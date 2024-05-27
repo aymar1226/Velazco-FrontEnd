@@ -42,6 +42,11 @@ export class InicioComponent implements OnInit{
     this.router.navigate(['/login'])
   }
 
+  cerrarSesion():void{
+    Swal.fire("Sesion cerrada exitosamente")
+    this.router.navigate(['/login'])
+  }
+
   irInformacion(): void{
     this.router.navigate(['/informacion'])
   }
@@ -57,7 +62,7 @@ export class InicioComponent implements OnInit{
   
 
   toggleAdministrar(): void {
-    this.router.navigate(['nav']);
+    this.router.navigate(['/admin']);
   }
 
   togglePerfil(): void {

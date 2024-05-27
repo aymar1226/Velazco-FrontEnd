@@ -513,3 +513,220 @@ textarea {
         width: 250px !important;
     }
 }
+
+
+.btnLogin button {
+    margin-left: 20px;
+    width: 150px;
+    height: 45px;
+    background: linear-gradient(to left top, #ffe4c4 50%, #ffe4c4 50%);
+    border-style: none;
+    color: black;
+    font-size: 15px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, .2);
+}
+
+.btnLogin button span {
+    position: absolute;
+    display: block;
+}
+
+.btnLogin button span:nth-child(1) {
+    height: 3px;
+    width: 150px;
+    top: 0px;
+    left: -200px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), #000000);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1 {
+    0% {
+        left: -150px
+    }
+
+    100% {
+        left: 150px;
+    }
+}
+
+.btnLogin button span:nth-child(2) {
+    height: 45px;
+    width: 3px;
+    top: -70px;
+    right: 0px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+
+@keyframes span2 {
+    0% {
+        top: -45px;
+    }
+
+    100% {
+        top: 45px;
+    }
+}
+
+.btnLogin button span:nth-child(3) {
+    height: 3px;
+    width: 150px;
+    right: -200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0), #000000);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+
+@keyframes span3 {
+    0% {
+        right: -150px;
+    }
+
+    100% {
+        right: 150px;
+    }
+}
+
+.btnLogin button span:nth-child(4) {
+    height: 45px;
+    width: 3px;
+    bottom: -70px;
+    left: 0px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0), #000000);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+
+@keyframes span4 {
+    0% {
+        bottom: -45px;
+    }
+
+    100% {
+        bottom: 45px;
+    }
+}
+
+.btnLogin button:hover {
+    transition: all .5s;
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, .4);
+}
+
+.btnLogin button:hover span {
+    animation-play-state: paused;
+}
+
+
+
+.usuario-options{
+    margin-left: 20px;
+    position: relative;
+}
+
+.usuario-options .iconuser{
+    padding: 10px;
+    background-color: bisque;
+    color: black;
+    font-size: 40px;
+    border-radius: 50px;
+}
+
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    width: 320px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap .open-menu{
+    max-height: 400px;
+}
+
+.sub-menu{
+    background: bisque;
+    padding: 20px;
+    margin: 10px;
+}
+
+.sub-menu .user-info{
+    display: flex;
+    align-items: center;
+}
+
+.sub-menu .user-info h2{
+    margin-left: 10px;
+    font-weight: 500 ! ;
+    margin-bottom: 0px;
+}
+
+.sub-menu .user-info i{
+    font-size: 25px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sub-menu hr{
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #000;
+    margin: 15px 0 10px;;
+}
+
+.sub-menu-link{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    margin: 12px 0;
+}
+
+.sub-menu-link p{
+    margin-left: 10px;
+    flex: 1;
+    margin: auto;
+    width: 100%;
+}
+
+.sub-menu-link i{
+    font-size: 25px;
+    width: 40px;
+}
+
+.sub-menu-link span{
+    font-size: 22px;
+    transition: transform 0.5s;
+}
+
+.sub-menu-link:hover span{
+    transform: translateX(5px);
+}
+
+.sub-menu-link:hover p{
+    font-weight: 600;
+}

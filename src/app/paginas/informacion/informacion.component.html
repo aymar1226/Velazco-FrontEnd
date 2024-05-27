@@ -13,6 +13,46 @@
                     <li><a (click)="irnosotros()">Nosotros</a></li>
                     <li><a (click)="irproductos()">Productos</a></li>
                     <li><a (click)="ircontacto()">Contacto</a></li>
+                    <li><div *ngIf="mostrarBotonInicioSesion" class="btnLogin">
+                        <button (click)="irLogin()">
+                            Inicia Sesión
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div></li>
+<!--                 <li>
+                        <div class="usuario-options" *ngIf="!mostrarBotonInicioSesion">
+                            <i class="fas fa-user iconuser" (click)="toggleMenu()"></i>
+                            <div class="sub-menu-wrap" [style.max-height.px]="menuAbierto ? 430 : 0">
+                                <div class="sub-menu">
+                                    <div class="user-info">
+                                        <i class="fas fa-user"></i>
+                                        <h2>Nombre</h2>
+                                    </div>
+                                    <hr>
+                                    <a class="sub-menu-link" (click)="toggleAdministrar()">
+                                        <i class="fas fa-cogs"></i>
+                                        <p>Administrar</p>
+                                        <span>></span>
+                                    </a>
+                
+                                    <a href="#" class="sub-menu-link" (click)="togglePerfil()">
+                                        <i class="fas fa-user-circle"></i>
+                                        <p>Perfil</p>
+                                        <span>></span>
+                                    </a>
+                
+                                    <a href="#" class="sub-menu-link" (click)="cerrarSesion(); $event.preventDefault()">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <p>Cerrar Sesión</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>-->
                 </ul>
             </nav>
         </div>
@@ -132,6 +172,8 @@
                 <p>Manjares, Colados, Turrones y más</p>
                 <a href="" (click)="redirigirACategoria(4); $event.preventDefault()">Ver mas</a>
             </div>
+
+            
         </div>
     </section>
 

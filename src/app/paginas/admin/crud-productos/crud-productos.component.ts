@@ -135,6 +135,7 @@ export class CrudProductosComponent implements OnInit{
         this.dataSource.data.push(result);
         this.dataSource._updateChangeSubscription();
         this.obtenerProductos();
+        
       }
     });
   }

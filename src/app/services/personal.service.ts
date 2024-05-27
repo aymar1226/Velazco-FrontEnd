@@ -29,6 +29,11 @@ export class PersonalService {
     return this.http.post<PersonaUsuarioDTO>('http://localhost:8080/api/empleados/crearusuario',usuarioDTO)
   }
 
+  eliminarEmpleado(empleado: Empleado):Observable<Empleado>{
+    return this.http.put<Empleado>('http://localhost:8080/api/empleados/delete',empleado);
+
+  }
+
 
 
 }

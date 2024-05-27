@@ -30,36 +30,57 @@
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input required name="apellido" type="text" placeholder="Primer Apellido" required [(ngModel)]="registro.ap_paterno">
+                    <div *ngIf="form.submitted && registro.ap_paterno=='' " class="text-danger">
+                        Correo es requerido.
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input type="text" placeholder="Segundo Apellido" name="ap_materno" required [(ngModel)]="registro.ap_materno">
+                    <div *ngIf="form.submitted && registro.ap_materno=='' " class="text-danger">
+                        Correo es requerido.
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-file"></i>
                     <input type="number" placeholder="DNI" name="ap_materno" required [(ngModel)]="registro.documento">
+                    <div *ngIf="form.submitted && registro.documento=='' " class="text-danger">
+                        DNI es requerido.
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-tty"></i>
                     <input type="number" placeholder="Telefono" name="telefono" required [(ngModel)]="registro.telefono">
+                    <div *ngIf="form.submitted && registro.correo=='' " class="text-danger">
+                        Telefono es requerido.
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Correo" name="correo" required [(ngModel)]="registro.correo">
+                    <div *ngIf="form.submitted && registro.correo=='' " class="text-danger">
+                        Correo es requerido.
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Contraseña" name="password" required [(ngModel)]="registro.password">
+                    <div *ngIf="form.submitted && registro.password=='' " class="text-danger">
+                        Contraseña es requerida.
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Confirmar contraseña" required name="confirmarPaswword" [(ngModel)]="confirmarPaswword">
+                    <div *ngIf="form.submitted && registro.password!=confirmarPaswword " class="text-danger">
+                        Las contraseñas no coinciden
+                    </div>
                 </div>
                 
                 <div class="d-grid">
-                    <label for="precio" >{{mensajeError}}</label>
                     <button type="submit" class="btn-1">Registrar</button>
                 </div>
+
                 
                 <p class="account-text">¿Ya tienes una cuenta? <a href="" id="sign-in-btn2" #signInBtn2>Iniciar</a></p>
             </form>

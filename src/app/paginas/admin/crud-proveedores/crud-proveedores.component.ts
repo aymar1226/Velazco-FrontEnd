@@ -73,6 +73,7 @@ export class CrudProveedoresComponent {
         // Aquí puedes manejar los datos ingresados por el usuario para crear un nuevo producto
         this.dataSource.data.push(result);
         this.dataSource._updateChangeSubscription();
+        this.obtenerProveedores();
       }
     });
   }
@@ -82,7 +83,7 @@ export class CrudProveedoresComponent {
     const dialogRef = this.dialog.open(EditarProveedorComponent, {
       width: '500px',
       height: '520px',
-      data: { nombre: element.nombre, telefono: element.telefono, correo: element.correo, direccion: element.direccion}
+      data: { proveedor: element}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -102,7 +103,9 @@ export class CrudProveedoresComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Lógica para eliminar la fila aquí
+        this.proveedorService.eliminarProveedor(element).subscribe(response=>{
+          
+        });
         // this.dataSource = this.dataSource.filter(item => item !== element);
         Swal.fire({
           title: 'Eliminado',
@@ -110,7 +113,7 @@ export class CrudProveedoresComponent {
           icon: 'success',
           confirmButtonColor: '#000000' // Negro para el botón OK de la alerta de eliminación
         });
-        //element.bloqueado = true;
+        element.estado = '0';
       }
     });
   }

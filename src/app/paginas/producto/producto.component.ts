@@ -15,7 +15,7 @@ import { DataService } from '../../services/data.service';
 export class ProductoComponent {
   imagenesUrl: { [key: number]: string } = {};
   categorias?: Categoria[];
-  categoriaSeleccionada?: number;
+  categoriaSeleccionada?: number=1;
   productos?: Producto[];
 
   producto?:Producto;
@@ -52,7 +52,9 @@ export class ProductoComponent {
     this.getCategorias();
 
     this.dataService.currentVariable.subscribe(variable => {
-      this.categoriaSeleccionada = variable;
+      if(variable){
+        this.categoriaSeleccionada = variable;
+      }
     });
     
     if(this.categoriaSeleccionada){

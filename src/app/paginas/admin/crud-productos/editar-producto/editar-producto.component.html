@@ -5,6 +5,7 @@
 
   <!-- Formulario para datos de usuario -->
   <form #form="ngForm" (ngSubmit)="confirmarProducto(form)" class="datos-usuario-form" novalidate *ngIf="producto">
+    
     <div class="form-group mb-3">
       <label for="nombre" class="text-dark">Nombre</label>
       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required [(ngModel)]="producto.nombre">

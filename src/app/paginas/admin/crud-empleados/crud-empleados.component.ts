@@ -75,7 +75,13 @@ export class CrudEmpleadosComponent {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El diálogo se ha cerrado');
+      if (result) {
+        // Aquí puedes manejar los datos ingresados por el usuario para crear un nuevo producto
+        this.dataSource.data.push(result);
+        this.dataSource._updateChangeSubscription();
+        this.obtenerEmpleados();
+        
+      }
     });
   }
 
@@ -92,6 +98,9 @@ export class CrudEmpleadosComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         // Lógica para eliminar la fila aquí
+        this.personalService.eliminarEmpleado(element).subscribe(response=>{
+          this.obtenerEmpleados();
+        });
         // this.dataSource = this.dataSource.filter(item => item !== element);
         Swal.fire({
           title: 'Eliminado',
@@ -100,7 +109,7 @@ export class CrudEmpleadosComponent {
           confirmButtonColor: '#000000' // Negro para el botón OK de la alerta de eliminación
         });
 
-        //element.bloqueado = true;
+        element.estado = '0';
       }
     });
   }
