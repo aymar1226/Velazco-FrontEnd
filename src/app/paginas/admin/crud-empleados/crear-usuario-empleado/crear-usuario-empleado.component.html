@@ -1,0 +1,34 @@
+<div class="container crear-elemento-container">
+    <h2 class="text-dark mb-4">Crear Usuario</h2>
+    
+    <!-- Formulario para datos de usuario -->
+    <form #form="ngForm" (ngSubmit)="crearUsuarioAEmpleado()" class="datos-usuario-form" novalidate>
+      
+      
+      <div class="form-group mb-3">
+        <label for="correo" class="text-dark">Correo</label>
+        <input type="email" class="form-control" id="correo" name="correo"  placeholder="Correo electrónico" required [(ngModel)]="persona.usuarioCorreo">
+        <div *ngIf="form.submitted" class="text-danger">
+          Correo es requerido y debe ser válido.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="contraseña" class="text-dark">Contraseña</label>
+        <input type="password" class="form-control" id="contraseña" name="contraseña"  placeholder="Contraseña" required [(ngModel)]="persona.usuarioContrasenia">
+        <div *ngIf="form.submitted" class="text-danger">
+          Contraseña es requerida.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="confirmarContraseña" class="text-dark">Confirmar Contraseña</label>
+        <input type="password" class="form-control" id="confirmarContraseña" name="confirmarContraseña" placeholder="Confirmar contraseña" required [(ngModel)]="confimarContrasenia">
+        <div *ngIf="form.submitted" class="text-danger">
+          Confirmar Contraseña es requerida.
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-dark crear-button" [disabled]="!form.valid">Crear Usuario</button>
+    </form>
+  </div>

@@ -1,0 +1,103 @@
+
+<div class="container crear-elemento-container">
+  
+  <h2 class="text-dark mb-4">Editar producto</h2>
+
+  <!-- Formulario para datos de usuario -->
+  <form #form="ngForm" (ngSubmit)="confirmarProducto(form)" class="datos-usuario-form" novalidate *ngIf="producto">
+    <div class="form-group mb-3">
+      <label for="nombre" class="text-dark">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required [(ngModel)]="producto.nombre">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="descripcion" class="text-dark">Descripcion</label>
+      <textarea type="text" class="form-control" id="descripcion" name="descripcion" 
+        placeholder="Descripción" required [(ngModel)]="producto.descripcion" ></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="categoria" class="text-dark">Categoría</label>
+      <select class="form-select" id="idcategoria" name="idcategoria" [(ngModel)]="producto.categoria.id" required>
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">{{categoria.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="precio" class="text-dark">Precio</label>
+      <input type="text" class="form-control" id="precio" name="precio"  placeholder="Precio" required [(ngModel)]="producto.precio"
+        inputmode="decimal" pattern="^\d+(\.\d{1,2})?$">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="stock" class="text-dark">Stock</label>
+      <input type="text" class="form-control" id="stock" name="stock"  placeholder="Stock" required [(ngModel)]="producto.stock">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="imagen" class="text-dark">Subir nueva imagen:</label>
+      <input type="file" class="form-control-file" id="imagen" name="imagen" accept="image/*" (change)="upload($event)">
+    </div>
+
+    <!-- Vista previa de la imagen -->
+    <div *ngIf="previsualizacion" class="form-control">
+      <img [src]="previsualizacion" class="img-fluid" alt="Vista previa de la imagen">
+    </div>
+
+    <button type="submit" class="btn btn-dark crear-button" (click)="subirArchivo()">Guardar</button>
+  </form>
+</div>
+
+
+
+
+
+
+<!-- <div>
+
+
+  <div class="fondo-semi-transparente" id="fondo" ></div>
+  
+  <div class="formulario-producto" id="formulario" *ngIf="producto">
+      <button (click)="ocultarFormulario()" class="boton-cerrar">X</button>
+      <h2>Editar Producto</h2>
+      
+      <form #form="ngForm" (ngSubmit)="confirmarProducto(form)">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required [(ngModel)]="producto.nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required [(ngModel)]="producto.descripcion"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="nombre">Precio:</label>
+          <input class="form-control" type="number" id="precio" name="precio" required [(ngModel)]="producto.precio">
+        </div>
+
+        <div class="form-group">
+          <select class="form-select" id="idcategoria" name="idcategoria" [(ngModel)]="producto.categoria.id" required>
+              <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">{{categoria.nombre}}</option>
+          </select>
+        </div>
+
+        
+        <div *ngIf="previsualizacion">
+          <label for="imagen">Imagen actual : {{producto.imagen}}</label>
+          <img [src]="previsualizacion" alt="" class="img-fluid img-thumbnail" width="100px">
+        </div>
+
+        <div class="form-group" >
+          <label for="imagen">Subir nueva Imagen:</label>
+          <input type="file" id="imagen" name="imagen" accept="image/*" required  (change)="upload($event)">
+        </div>
+
+          <button (click)="subirArchivo()" class="btn btn-primary btn-lg" type="submit" value="Agregar">
+            Confirmar
+          </button>
+      </form>
+  </div>
+</div> -->

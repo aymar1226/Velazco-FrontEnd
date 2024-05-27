@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .crear-elemento-container h2, .crear-elemento-container label {
+    color: black;
+  }
+  
+  .crear-button {
+    background-color: black;
+    border-color: black;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  

@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+
+.sidenav-container {
+  height: 100%;
+  max-width: 100%;
+}
+
+.sidenav {
+  width: 250px;
+  background-color: floralwhite;
+}
+
+.imagen {
+  display: block;
+  margin: 0 auto;
+  /* Centra la imagen horizontalmente */
+}
+
+.mat-toolbar.mat-label {
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
+  height: 64px;
+  /* Ajusta este valor según la altura de tu mat-toolbar */
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-button {
+  text-align: center;
+  color: white !important;
+  /* Color del texto */
+  background-color: floralwhite;
+  /* Color de fondo */
+  border-radius: 0 !important;
+}
+
+.mat-button:hover {
+  background-color: blanchedalmond;
+  /* Color de fondo al pasar el cursor */
+}
+
+.mat-sidenav-content {
+  background-color: white;
+}
+
+.mat-toolbar {
+  background-color: black;
+}
+
+
+/*Perfil*/
+
+.usuario-options{
+  margin-left: auto;
+  position: relative;
+}
+
+.usuario-options .iconuser{
+  padding: 10px;
+  background-color: floralwhite;
+  color: black;
+  font-size: 25px;
+  border-radius: 50px;
+}
+
+.sub-menu-wrap{
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.sub-menu-wrap .open-menu{
+  max-height: 400px;
+}
+
+.sub-menu{
+  background: floralwhite;
+  padding: 20px;
+  margin: 10px;
+}
+
+.sub-menu .user-info{
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.sub-menu .user-info h2{
+  margin-left: 10px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.sub-menu .user-info i{
+  font-size: 25px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.sub-menu hr{
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #000;
+  margin: 15px 0 10px;;
+}
+
+.sub-menu-link{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  margin: 12px 0;
+}
+
+.sub-menu-link p{
+  margin-left: 10px;
+  font-size: 18px;
+  flex: 1;
+  margin: auto;
+  width: 100%;
+}
+
+.sub-menu-link i{
+  font-size: 20px;
+  width: 40px;
+}
+
+.sub-menu-link span{
+  font-size: 20px;
+  transition: transform 0.5s;
+}
+
+.sub-menu-link:hover span{
+  transform: translateX(5px);
+}
+
+.sub-menu-link:hover p{
+  font-weight: 600;
+}

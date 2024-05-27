@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header text-white">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Gestión de Empleados</h5>
+          <button class="btn btn-light" (click)="crearElemento()">
+            <i class="fas fa-user-plus"></i> Crear Empleado
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <input id="buscar" class="form-control" (keyup)="applyFilter($event)" placeholder="Buscar en la tabla">
+        </div>
+        <div class="table-responsive">
+          <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="table table-striped table-hover">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+              <td mat-cell *matCellDef="let row">{{row.id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+              <td mat-cell *matCellDef="let row">{{row.persona.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido Paterno</th>
+              <td mat-cell *matCellDef="let row">{{row.persona.ap_paterno}} {{row.persona.ap_materno}}</td>
+            </ng-container>
+            <ng-container matColumnDef="telefono">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono</th>
+              <td mat-cell *matCellDef="let row">{{row.persona.telefono}}</td>
+            </ng-container>
+            <ng-container matColumnDef="dni">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+              <td mat-cell *matCellDef="let row">{{row.persona.documento}}</td>
+            </ng-container>
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
+              <td mat-cell *matCellDef="let row">{{row.persona.direccion}}</td>
+            </ng-container>
+            <ng-container matColumnDef="cargo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cargo</th>
+              <td mat-cell *matCellDef="let row">{{row.cargo.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-button class="crearUsuario" (click)="crearUsuario(element)" matTooltip="Crear Usuario">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button mat-button class="eliminar" (click)="eliminar(element)" matTooltip="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'bloqueado': row.bloqueado}">
+              <ng-container *ngFor="let column of displayedColumns">
+                <td mat-cell *matCellDef="let element">{{element[column]}}</td>
+              </ng-container>
+              <td mat-cell *matCellDef="let element" [ngClass]="{'bloqueado': element.bloqueado}">
+                <button mat-button class="eliminar" (click)="eliminar(element)" [disabled]="element.bloqueado" matTooltip="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>

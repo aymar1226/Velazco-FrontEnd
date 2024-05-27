@@ -1,0 +1,183 @@
+.category-tabs {
+    text-align: left;
+    margin-bottom: 20px;
+    width: 50;
+}
+
+.tab-link {
+    width: 125px;
+    background-color: #f1f1f1;
+    color: black;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-size: 17px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin: 0 4px;
+}
+
+
+.tab-link.active:hover {
+    background-color: #666;
+    color: white;
+}
+
+.product-listing {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+.product {
+    border: 1px solid brown;
+    background-color: #fffaf0; /* Beige, para un contraste sutil con el fondo */
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10px 10px 0 0; /* Redondear esquinas superiores */
+}
+
+.product-name {
+    color: brown;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #4d4d4d;
+    margin-bottom: 10px;
+}
+
+
+.product-price {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: brown; /* Un tono de marrón oscuro */
+    margin-bottom: 10px;
+}
+
+.quantity-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quantity-btn {
+    background-color: brown;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    border-radius: 5px;
+}
+
+.quantity-btn:hover {
+    background-color: #d2691e; /* Chocolate */
+}
+
+#quantity {
+    width: 40px;
+    text-align: center;
+    border: 1px solid brown;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-size: 16px;
+    color: #4d4d4d;
+}
+
+
+.custom-btn {
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    color: antiquewhite;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: brown;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-block;
+    outline: none;
+    position: relative;
+}
+
+.custom-btn.comprar {
+    color: white;
+    background-color: brown; /* Fondo marrón oscuro */
+}
+
+.custom-btn.comprar:hover {
+    background-color: #d2691e; /* Chocolate, un marrón más claro para el hover */
+    color: antiquewhite;
+}
+
+.custom-btn.comprar:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 5px;
+    background-color: brown;
+    background-image: linear-gradient(315deg, brown 0%, brown 74%);
+    transition: all 0.3s ease;
+}
+
+.custom-btn.comprar:hover:after {
+    top: auto;
+    bottom: 0;
+    height: 100%;
+}
+
+.custom-btn.comprar:active {
+    top: 2px;
+}
+
+
+@media (max-width: 600px) {
+    .category-tabs .tab-link {
+        display: block;
+    }
+}
+
+
+main {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #f3f3f3;
+}
+
+.tab-link.selected {
+    background-color: #030303;
+    color: #fff; 
+  }

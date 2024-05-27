@@ -1,0 +1,87 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+  
+      <div class="sidenav-header">
+        <img src="assets/layout/logo_size-removebg-preview.png" alt="" class="imagen">
+        <mat-toolbar class="mat-label">Menu</mat-toolbar>
+      </div>
+      <mat-nav-list>
+        <a class="option mat-button" mat-list-item (click)="setView('link1')" >Usuarios</a>
+        <a class="option mat-button" mat-list-item (click)="setView('link2')">Empleados</a>
+        <a class="option mat-button" mat-list-item (click)="setView('link3')">Clientes</a>
+        <a class="option mat-button" mat-list-item (click)="setView('link4')">Productos</a>
+        <a class="option mat-button" mat-list-item (click)="setView('link5')">Proveedores</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        @if (isHandset$ | async) {
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        }
+        <span>Administración</span>
+  
+  
+        <div class="usuario-options">
+          <i class="fas fa-user iconuser" (click)="toggleMenu()"></i>
+          <div class="sub-menu-wrap" [style.max-height.px]="menuAbierto ? 430 : 0">
+              <div class="sub-menu">
+                  <div class="user-info">
+                      <i class="fas fa-user"></i>
+                      <h2>Nombre</h2>
+                  </div>
+                  <hr>
+                  <a class="sub-menu-link" (click)="toggleVolver()">
+                    <i class="fas fa-arrow-left"></i>
+                    <p>Volver</p>
+                    <span>></span>
+                  </a>
+  
+                  <a href="#" class="sub-menu-link" (click)="togglePerfil()">
+                      <i class="fas fa-user-circle"></i>
+                      <p>Perfil</p>
+                      <span>></span>
+                  </a>
+  
+                  <a href="#" class="sub-menu-link">
+                      <i class="fas fa-sign-out-alt"></i>
+                      <p>Cerrar Sesión</p>
+                      <span>></span>
+                  </a>
+              </div>
+          </div>
+      </div>
+      </mat-toolbar>
+  
+      <div *ngIf="currentView === 'link1'">
+        <app-crud-usuarios></app-crud-usuarios>
+      </div>
+
+      <div *ngIf="currentView === 'link2'">
+        <app-crud-empleados></app-crud-empleados>
+      </div>
+
+      <div *ngIf="currentView === 'link3'">
+        <app-crud-clientes></app-crud-clientes> 
+      </div>
+
+      <div *ngIf="currentView === 'link4'">
+        <app-crud-productos></app-crud-productos>
+      </div>
+
+      <div *ngIf="currentView === 'link5'">
+        <app-crud-proveedores></app-crud-proveedores>
+      </div>
+  
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+    
+    
+    
+    
+
+    
+    

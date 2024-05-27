@@ -1,0 +1,92 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header text-white">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Gestión de Productos</h5>
+          <button class="btn btn-light" (click)="crearElemento()">
+            <i class="fas fa-box-open"></i> Crear Producto
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <input id="buscar" class="form-control" (keyup)="applyFilter($event)" placeholder="Buscar en la tabla">
+        </div>
+        <div class="table-responsive" >
+          <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"  class="table table-striped table-hover">
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+              <td mat-cell *matCellDef="let row">{{row.id}}</td>
+            </ng-container>
+  
+            <!-- Categoria Column -->
+            <ng-container matColumnDef="categoria">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
+              <td mat-cell *matCellDef="let row">{{row.categoria.nombre}}</td>
+            </ng-container>
+  
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+              <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+            </ng-container>
+  
+            <!-- Descripcion Column -->
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
+              <td mat-cell *matCellDef="let row">{{row.descripcion}}</td>
+            </ng-container>
+  
+            <!-- Precio Column -->
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+              <td mat-cell *matCellDef="let row">{{row.precio}}</td>
+            </ng-container>
+  
+            <!-- Stock Column -->
+            <ng-container matColumnDef="stock">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
+              <td mat-cell *matCellDef="let row">{{row.stock}}</td>
+            </ng-container>
+  
+            <!-- Acciones Column -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-button class="editar-button" (click)="editar(row)" matTooltip="Editar">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button mat-button class="eliminar-button" (click)="eliminar(row)" matTooltip="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </ng-container>
+  
+            <!-- Definición de las filas y columnas -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'bloqueado': row.estado==='0'}">
+              <ng-container *ngFor="let column of displayedColumns">
+                <td mat-cell *matCellDef="let element">{{element[column]}}</td>
+              </ng-container>
+              <td mat-cell *matCellDef="let element" [ngClass]="{'bloqueado': element.estado==='0'}">
+                <button mat-button class="eliminar" (click)="eliminar(element)" [disabled]="element.estado==='0'" matTooltip="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>   
+    
+    
+  <app-editar-producto 
+  *ngIf="mostrareditar==true"></app-editar-producto>
+
+    
+    
+    
+  

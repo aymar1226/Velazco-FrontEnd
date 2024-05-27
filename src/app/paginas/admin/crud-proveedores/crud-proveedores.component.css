@@ -1,0 +1,70 @@
+/* Agrega un margen superior para espaciar el contenido */
+.container {
+    max-width: 100%;
+  }
+  
+  .card-header {
+    background-color: black;
+  }
+  
+  .card-header h5 {
+    margin: 10px;
+    font-size: 18px;
+  }
+  
+  /* Estilo para el encabezado de la tabla */
+  .mat-header-cell {
+    background-color: black;
+    /* Cambiar el color del encabezado a negro */
+    color: white;
+    /* Cambiar el color del texto a blanco */
+  }
+  
+  /* Estilo para el botón "Crear" */
+  .btn-crear {
+    margin-top: 10px;
+    /* Agregar un margen superior de 10px al botón */
+  }
+  
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  .table-responsive {
+    margin-top: 20px;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .eliminar-button {
+    background-color: red; /* Color rojo */
+    margin: 1px;
+    color: white !important; /* Texto blanco */
+  }
+  
+  .eliminar-button:hover {
+    background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
+    border-color: darkred;
+  }
+  
+  /* Estilos para el botón Crear */
+  .editar-button {
+    background-color: black; /* Color azul */
+    margin: 1px;
+    color: white !important; /* Texto blanco */
+  }
+  
+  .editar-button:hover {
+    background-color: #333; /* Color azul más oscuro al pasar el mouse */
+  }
+  
+  .bloqueado {
+    pointer-events: none;
+    opacity: 0.5;
+  }

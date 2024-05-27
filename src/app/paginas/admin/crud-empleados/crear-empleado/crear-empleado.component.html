@@ -1,0 +1,69 @@
+<div class="container crear-elemento-container">
+    <h2 class="text-dark mb-4">Crear Empleado</h2>
+    
+    <!-- Formulario para datos de usuario -->
+    <form #form="ngForm" (ngSubmit)="agregarEmpleado(form)" class="datos-usuario-form" novalidate>
+      <div class="form-group mb-3">
+        <label for="nombre" class="text-dark">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required [(ngModel)]="empleado.persona.nombre">
+        <div *ngIf="form.submitted && empleado.persona.nombre=='' " class="text-danger">
+          Nombre es requerido.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="primerApellido" class="text-dark">Primer Apellido</label>
+        <input type="text" class="form-control" id="primerApellido" name="primerApellido" placeholder="Primer Apellido" required [(ngModel)]="empleado.persona.ap_paterno
+        ">
+        <div *ngIf="form.submitted && empleado.persona.ap_paterno=='' " class="text-danger">
+          Primer Apellido es requerido.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="segundoApellido" class="text-dark">Segundo Apellido</label>
+        <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" placeholder="Segundo Apellido" required [(ngModel)]="empleado.persona.ap_materno">
+        <div *ngIf="form.submitted && empleado.persona.ap_materno=='' " class="text-danger">
+          Segundo Apellido es requerido.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="dni" class="text-dark">DNI</label>
+        <input type="text" class="form-control" id="dni" name="dni" placeholder="Documento de Identidad" required [(ngModel)]="empleado.persona.documento">
+        <div *ngIf="form.submitted && empleado.persona.documento=='' " class="text-danger">
+          DNI es requerido.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="telefono" class="text-dark">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required [(ngModel)]="empleado.persona.telefono">
+        <div *ngIf="form.submitted && empleado.persona.telefono=='' " class="text-danger">
+          Teléfono es requerido.
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="direccion" class="text-dark">Dirección</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" required [(ngModel)]="empleado.persona.direccion">
+        <div *ngIf="form.submitted && empleado.persona.direccion =='' " class="text-danger">
+          Dirección es requerida.
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="cargo" class="text-dark">Cargo</label>
+        <select class="form-select" id="cargo" name="cargo" required [(ngModel)]="empleado.cargo.id">
+            <option value="" disabled selected>Seleccione un cargo</option>
+
+            <option *ngFor="let cargo of cargos" [ngValue]="cargo.id">{{cargo.nombre}}</option>
+          </select>
+        <div *ngIf="form.submitted && empleado.cargo.id==0 " class="text-danger">
+          Cargo es requerido.
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-dark crear-button" [disabled]="!form.valid">Crear Empleado</button>
+    </form>
+  </div>

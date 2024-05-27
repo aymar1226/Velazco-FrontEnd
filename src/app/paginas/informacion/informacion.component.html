@@ -1,0 +1,159 @@
+<div class="body">
+    <header class="header">
+        <div class="menu container">
+            <img (click)="irInformacion()" src="assets/layout/logo_size_invert-removebg-preview.png" class="logo"
+                alt="Logo">
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src="assets/layout/menu.png" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a (click)="irInformacion()">Inicio</a></li>
+                    <li><a (click)="irnosotros()">Nosotros</a></li>
+                    <li><a (click)="irproductos()">Productos</a></li>
+                    <li><a (click)="ircontacto()">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1>Velazco</h1>
+                <span>Dulceria Y Pasteleria</span>
+                <p>En Dulcería y Pastelería Velazco, nos complace deleitar tus sentidos con una amplia gama de
+                    exquisitas creaciones dulces. Desde nuestros pasteles decorados con maestría hasta nuestras
+                    tentadoras galletas y dulces caseros, cada bocado está cuidadosamente elaborado para ofrecerte una
+                    experiencia inolvidable.
+                </p>
+            </div>
+
+            <div class="header-dir">
+                <div class="dir">
+                    <h3>Dirección</h3>
+                    <p>Av. Grau 195</p>
+                </div>
+                <div class="dir">
+                    <h3>Telefono</h3>
+                    <p>(056) 232831 - 983 422 019</p>
+                </div>
+                <div class="dir">
+                    <h3>Horario</h3>
+                    <p>9 am - 10 pm</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="Bienvenido">
+        <div class="Bienvenido1"></div>
+
+        <div class="Bienvenido2">
+            <h2>Bienvenidos a Velazco</h2>
+            <p class="b1">
+                ¡Bienvenidos a Dulcería y Pastelería Velazco!
+            </p>
+            <p>
+                Déjate seducir por los aromas y sabores irresistibles que tenemos
+                preparados para ti en cada rincón de nuestro encantador local.
+                En Dulcería y Pastelería Velazco, nos esforzamos por brindarte
+                momentos dulces y memorables a través de nuestras delicias artesanales.
+            </p>
+        </div>
+    </section>
+
+    <main class="nosotros container" #nosotros>
+        <div class="nosotros-txt">
+            <h2>Nosotros</h2>
+            <hr>
+            <p>
+                Somos una empresa dedicada a endulzar los momentos más especiales de tu vida.
+                Con años de experiencia en el arte de la repostería, en Dulcería y Pastelería
+                Velazco nos enorgullecemos de ofrecer productos de alta calidad, elaborados
+                con ingredientes frescos y con un toque de pasión y creatividad en cada preparación.
+            </p>
+        </div>
+        <div class="nosotros-group">
+            <div class="mision">
+                <img src="assets/layout/mision.png" alt="">
+                <h3>Mision</h3>
+                <p>
+                    Somos una empresa dedicada a la elaboración de los más exquisitos dulces y
+                    pasteles llenos de tradición y sabor único, complaciendo los antojos de nuestros
+                    clientes con productos de calidad y saludables; en un ambiente agradable
+                    desarrollados por un equipo humano competente, comprometido enproporcionar
+                    excelente servicio y satisfacción, generando desarrollo económico social al país
+                    y la empresas.
+                </p>
+            </div>
+            <div class="mision">
+                <img src="assets/layout/vision.png" alt="">
+                <h3>Vision</h3>
+                <p>
+                    Seguir siendo la empresa pastelera líder en la ciudad de ICA y continuar creciendo
+                    para lograr la expansión a nivel nacional buscando la plena satisfacción de los
+                    clientes que nos visitan, dándoles cada vez un mejor servicio y mayor atención
+                    para Ser reconocidos como la mejor pastelería y dulcería, en donde nuestro
+                    compromiso principal sea crear experiencias agradables al paladar de nuestros
+                    clientes.”
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <section class="productos-container" #productos>
+        <div class="productos-txt">
+            <h2>Nuestros Productos</h2>
+            <hr>
+        </div>
+
+        <div class="producto-group">
+            <div class="producto-1">
+                <img src="assets/layout/galletas.jpg" alt="">
+                <h3>Galletas</h3>
+                <p>Paciencia, Revolución y más</p>
+                <a href="" (click)="redirigirACategoria(2); $event.preventDefault()">Ver mas</a>
+            </div>
+            <div class="producto-1">
+                <img src="assets/layout/bizcochos.jpg" alt="">
+                <h3>Bizcochos</h3>
+                <p>Pitipan, Panes, Toritos y más</p>
+                <a href="" (click)="redirigirACategoria(1); $event.preventDefault()">Ver mas</a>
+            </div>
+            <div class="producto-1">
+                <img src="assets/layout/pasteles.jpg" alt="">
+                <h3>Pasteles</h3>
+                <p>Pyes, Piononos, Alfajores y más</p>
+                <a href="" (click)="redirigirACategoria(3); $event.preventDefault()">Ver mas</a>
+            </div>
+            <div class="producto-1">
+                <img src="assets/layout/dulces.jpg" alt="">
+                <h3>Dulces</h3>
+                <p>Manjares, Colados, Turrones y más</p>
+                <a href="" (click)="redirigirACategoria(4); $event.preventDefault()">Ver mas</a>
+            </div>
+        </div>
+    </section>
+
+    <footer #contacto>
+        <div class="footer-bg">
+            <h2>Contactanos</h2>
+            <form>
+                <div class="Campo-1">
+                    <input class="campo" type="text" placeholder="Nombre">
+                    <input class="campo" type="number" placeholder="Telefono">
+                </div>
+                <div class="Campo-1">
+                    <input class="campo" type="email" placeholder="Correo">
+                    <input class="campo" type="text" placeholder="Asunto">
+                </div>
+                <textarea class="campo" cols="30" rows="10" placeholder="Texto"></textarea>
+                <span class="btn-1">Hover Me </span>
+            </form>
+        </div>
+        <div class="footer-txt">
+            <p>"Endulzando momentos, creando sonrisas. ¡Gracias por elegirnos en Dulcería y Pastelería Velazco!"</p>
+        </div>
+
+    </footer>
+</div>

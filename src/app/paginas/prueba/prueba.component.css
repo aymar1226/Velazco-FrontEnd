@@ -1,0 +1,253 @@
+* {
+  padding: 0px;
+  margin: 0px auto;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cont_principal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e5e5e5', GradientType=1);
+}
+
+.cont_centrar {
+  max-width: 120px;
+  position: relative;
+  top: 25%;
+}
+
+.cont_list_btn {
+  position: relative;
+}
+
+.cont_list_btn>ul>li {
+  position: relative;
+  float: left;
+  list-style: none;
+}
+
+.cont_list_btn>ul>li ul {
+  list-style: none;
+}
+
+.btn_list {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 2px;
+  background-color: #ffcc00;
+  display: block;
+  box-shadow: 1px 1px 20px 1px rgba(255, 204, 0, 0.5);
+  z-index: 11;
+}
+
+.btn_list>span {
+  margin-top: 20px;
+}
+
+.btn_list>span:before {
+  font-size: 30px;
+  color: #444;
+}
+
+.btn_list_2 {
+  position: relative;
+  width: 70px;
+  height: 60px;
+  display: block;
+  transition: all 0.5s;
+  background-color: #fff;
+  z-index: 0;
+}
+
+.btn_list_2:hover {
+  background-color: #7c828b;
+}
+
+.btn_list_2:hover>.hr_center {
+  opacity: 0;
+}
+
+.btn_list_2:hover path {
+  fill: #fff;
+}
+
+.btn_list_2:hover g {
+  stroke: #fff;
+}
+
+#Page-1 {
+  z-index: 1000;
+  display: block;
+}
+
+#svg_icon {
+  position: relative;
+  float: left;
+  width: 100%;
+  z-index: 10;
+  top: -13px;
+  transition: all 0.5s;
+}
+
+#Artboard-1 {
+  fill: #fff;
+  background-color: #fff;
+  transition: all 0.5s;
+}
+
+.first_icon:hover+#Artboard-1 {
+  fill: #7c828b;
+  background-color: #7c828b;
+}
+
+.cont_back_menu {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 1px 2px 20px -5px rgba(0, 0, 0, 0.3);
+  float: left;
+  width: 70px;
+  margin-left: 27px;
+  border-radius: 3px;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+
+.div_hidde {
+  overflow: hidden;
+  height: 0px;
+}
+
+.sub_ul {
+  position: relative;
+  width: 100%;
+  float: left;
+}
+
+.hr_center {
+  height: 1px;
+  background: #eee;
+  width: 80%;
+  position: relative;
+  margin: 0px auto;
+}
+
+.list_li_1 a {
+  border-radius: 3px 3px 0px 0px;
+}
+
+.list_li_1 i {
+  margin-top: 20px;
+  margin-bottom: 18px;
+  opacity: 0;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.list_li_2 i {
+  margin-top: 22px;
+  margin-bottom: 19px;
+  opacity: 0;
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+}
+
+.list_li_3 i {
+  margin-top: 20px;
+  margin-bottom: 17px;
+  opacity: 0;
+  -webkit-transition-delay: 2s;
+  transition-delay: 2s;
+}
+
+.list_li_4 i {
+  margin-top: 24px;
+  margin-bottom: 0px;
+  opacity: 0;
+  -webkit-transition-delay: 2.5s;
+  transition-delay: 2.5s;
+}
+
+.list_li_4 a {
+  border-radius: 0px 0px 3px 3px;
+}
+
+.active {
+  height: 240px;
+}
+
+.inactive {
+  height: 240px;
+}
+
+.cont_back_menu>ul>li i {
+  transition: all 0.5s;
+  left: -25px;
+  position: relative;
+}
+
+.active>ul>li i {
+  opacity: 1;
+  left: 0px;
+}
+
+.inactive>ul>li i {
+  opacity: 0;
+  left: -25px;
+}
+
+.cont_back_menu>ul>li:firt-child i {
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.cont_back_menu>ul>li:nth-child(2) i {
+  -webkit-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}
+
+.cont_back_menu>ul>li:nth-child(3) i {
+  -webkit-transition-delay: 0.9s;
+  transition-delay: 0.9s;
+}
+
+.cont_back_menu>ul>li:nth-child(4) i {
+  -webkit-transition-delay: 1.2s;
+  transition-delay: 1.2s;
+}
+
+.cont_back_menu>ul>li:nth-child(5) i {
+  -webkit-transition-delay: 1.5s;
+  transition-delay: 1.5s;
+}
+
+.inactive>ul>li:nth-child(1) i {
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+}
+
+.inactive>ul>li:nth-child(2) i {
+  -webkit-transition-delay: 0.8s;
+  transition-delay: 0.8s;
+}
+
+.inactive>ul>li:nth-child(3) i {
+  -webkit-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}
+
+.inactive>ul>li:nth-child(4) i {
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+
+.inactive>ul>li:nth-child(5) i {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
