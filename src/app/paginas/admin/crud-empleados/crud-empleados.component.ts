@@ -67,13 +67,13 @@ export class CrudEmpleadosComponent {
   }
 
   crearUsuario(element: Empleado) {
-    
+    console.log(element);
     // Aquí puedes implementar la lógica para crear un usuario
     const dialogRef = this.dialog.open(CrearUsuarioEmpleadoComponent, {
-      data: {id:element.persona.id},
       width: '500px', // Ajusta el ancho según tus necesidades
+      data: {id:element.persona.id},
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       console.log('El diálogo se ha cerrado');
     });

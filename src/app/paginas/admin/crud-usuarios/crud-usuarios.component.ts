@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { Router } from '@angular/router';
+import { response } from 'express';
 
 @Component({
   selector: 'app-crud-usuarios',
@@ -84,7 +85,7 @@ export class CrudUsuariosComponent implements OnInit {
     const dialogRef = this.dialog.open(EditarUsuarioComponent, {
       width: '500px',
       height: '350px',
-      data: { nombre: element.persona.nombre, correo: element.correo}
+      data: { usuario: element}
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -107,7 +108,11 @@ export class CrudUsuariosComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Lógica para eliminar la fila aquí
+        console.log(element);
+        this.usuarioService.eliminarUsuario(element).subscribe(response=>{
+
+        });
+
         // this.dataSource = this.dataSource.filter(item => item !== element);
         Swal.fire({
           title: 'Eliminado',
@@ -115,20 +120,12 @@ export class CrudUsuariosComponent implements OnInit {
           icon: 'success',
           confirmButtonColor: '#000000' // Negro para el botón OK de la alerta de eliminación
         });
+        element.estado='0';
       }
     });
   }
   
-  crearElemento() {
-    const dialogRef = this.dialog.open(CrearUsuarioComponent, {
-      width: '550px', // Ajusta el ancho según tus necesidades
-      height: '750px',
-    });
   
-    dialogRef.afterClosed().subscribe(result => {
-      
-    });
-  }
 
 // Métodos para la paginación
     previousPage() {

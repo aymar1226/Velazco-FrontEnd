@@ -1,1 +1,24 @@
-<p>editar-usuario works!</p>
+<div class="container crear-elemento-container">
+    <h2 class="text-dark mb-4">Actualizar Usuario</h2>
+    
+    <!-- Formulario para datos de usuario -->
+    <form #form="ngForm" (ngSubmit)="editarUsuario(form)" class="datos-usuario-form" novalidate>
+    
+
+
+        <div class="form-group mb-3">
+            <label for="categoria" class="text-dark">Correo</label>
+            <select class="form-select" id="privilegio" name="privilegio" required [(ngModel)]="personaDTO.usuarioPrivilegio">
+              <option value="" disabled selected>Seleccione un cargo</option>
+                <option *ngFor="let privilegio of privilegios" [ngValue]="privilegio.nombre">{{privilegio.nombre}}</option>
+            </select>
+            <div *ngIf="form.submitted && personaDTO.usuarioPrivilegio=='' " class="text-danger">
+              Rol es requerido.
+            </div>
+          </div>
+      
+
+      
+      <button type="submit" class="btn btn-dark crear-button" [disabled]="!form.valid">Actualizar Usuario</button>
+    </form>
+  </div>

@@ -26,7 +26,6 @@
       <select class="form-select" id="categoria" name="categoria" required [(ngModel)]="producto.categoria.id">
         <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">{{categoria.nombre}}</option>
       </select>
-      
       <div *ngIf="form.submitted && !producto.categoria.id" class="text-danger">
         Categoría es requerida.
       </div>

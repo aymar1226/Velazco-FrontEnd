@@ -56,7 +56,6 @@
         <label for="cargo" class="text-dark">Cargo</label>
         <select class="form-select" id="cargo" name="cargo" required [(ngModel)]="empleado.cargo.id">
             <option value="" disabled selected>Seleccione un cargo</option>
-
             <option *ngFor="let cargo of cargos" [ngValue]="cargo.id">{{cargo.nombre}}</option>
           </select>
         <div *ngIf="form.submitted && empleado.cargo.id==0 " class="text-danger">

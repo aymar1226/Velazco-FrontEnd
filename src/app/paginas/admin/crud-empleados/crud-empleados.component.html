@@ -44,11 +44,11 @@
             </ng-container>
             <ng-container matColumnDef="acciones">
               <th mat-header-cell *matHeaderCellDef>Acciones</th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-button class="crearUsuario" (click)="crearUsuario(element)" matTooltip="Crear Usuario">
+              <td mat-cell *matCellDef="let row">
+                <button mat-button class="crearUsuario" (click)="crearUsuario(row)" matTooltip="Crear Usuario">
                   <i class="fas fa-plus"></i>
                 </button>
-                <button mat-button class="eliminar" (click)="eliminar(element)" matTooltip="Eliminar">
+                <button mat-button class="eliminar" (click)="eliminar(row)" matTooltip="Eliminar">
                   <i class="fas fa-trash"></i>
                 </button>
               </td>

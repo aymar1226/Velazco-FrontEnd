@@ -3,7 +3,6 @@
     <div class="card-header text-white">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Gestión de Usuarios</h5>
-        <button class="btn btn-light" (click)="crearElemento()"><i class="fas fa-user-plus"></i> Crear Usuario</button>
       </div>
     </div>
     <div class="card-body">
@@ -48,12 +47,12 @@
 
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'bloqueado': row.bloqueado}">
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"[ngClass]="{'bloqueado': row.estado==='0'}">
             <ng-container *ngFor="let column of displayedColumns">
               <td mat-cell *matCellDef="let element">{{element[column]}}</td>
             </ng-container>
-            <td mat-cell *matCellDef="let element" [ngClass]="{'bloqueado': element.bloqueado}">
-              <button mat-button class="eliminar" (click)="eliminar(element)" [disabled]="element.bloqueado" matTooltip="Eliminar">
+            <td mat-cell *matCellDef="let element" [ngClass]="{'bloqueado': element.estado==='0'}">
+              <button mat-button class="eliminar" (click)="eliminar(element)" [disabled]="element.estado==='0'" matTooltip="Eliminar">
                 <i class="fas fa-trash"></i>
               </button>
             </td>

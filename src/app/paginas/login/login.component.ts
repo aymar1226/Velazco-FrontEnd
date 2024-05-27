@@ -127,6 +127,7 @@ export class LoginComponent implements OnInit{
                 this.usuarioService.crearCarrito(this.registro.correo).subscribe(response=>{
                   console.log("Nuevo carrito creado")
                 });
+                
               },error=>{
                 Swal.fire('No se pudo registrar el usuario')  
               })

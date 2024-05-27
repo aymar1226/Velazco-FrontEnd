@@ -2,21 +2,31 @@
     <h2 class="text-dark mb-4">Crear Usuario</h2>
     
     <!-- Formulario para datos de usuario -->
-    <form #form="ngForm" (ngSubmit)="crearUsuarioAEmpleado()" class="datos-usuario-form" novalidate>
-      
-      
+    <form #form="ngForm" (ngSubmit)="crearUsuarioAEmpleado(form)" class="datos-usuario-form" novalidate>
+    
       <div class="form-group mb-3">
         <label for="correo" class="text-dark">Correo</label>
         <input type="email" class="form-control" id="correo" name="correo"  placeholder="Correo electrónico" required [(ngModel)]="persona.usuarioCorreo">
-        <div *ngIf="form.submitted" class="text-danger">
+        <div *ngIf="form.submitted && persona.usuarioCorreo=='' " class="text-danger">
           Correo es requerido y debe ser válido.
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="categoria" class="text-dark">Correo</label>
+        <select class="form-select" id="privilegio" name="privilegio" required [(ngModel)]="persona.usuarioPrivilegio">
+          <option value="" disabled selected>Seleccione un cargo</option>
+            <option *ngFor="let privilegio of privilegios" [ngValue]="privilegio.nombre">{{privilegio.nombre}}</option>
+        </select>
+        <div *ngIf="form.submitted && persona.usuarioPrivilegio=='' " class="text-danger">
+          Rol es requerido.
         </div>
       </div>
       
       <div class="form-group mb-3">
         <label for="contraseña" class="text-dark">Contraseña</label>
         <input type="password" class="form-control" id="contraseña" name="contraseña"  placeholder="Contraseña" required [(ngModel)]="persona.usuarioContrasenia">
-        <div *ngIf="form.submitted" class="text-danger">
+        <div *ngIf="form.submitted && persona.usuarioContrasenia==''" class="text-danger">
           Contraseña es requerida.
         </div>
       </div>
@@ -24,9 +34,12 @@
       <div class="form-group mb-3">
         <label for="confirmarContraseña" class="text-dark">Confirmar Contraseña</label>
         <input type="password" class="form-control" id="confirmarContraseña" name="confirmarContraseña" placeholder="Confirmar contraseña" required [(ngModel)]="confimarContrasenia">
-        <div *ngIf="form.submitted" class="text-danger">
+        <div *ngIf="form.submitted && confimarContrasenia==''" class="text-danger">
           Confirmar Contraseña es requerida.
         </div>
+        <div *ngIf="form.submitted && confimarContrasenia!=persona.usuarioContrasenia" class="text-danger">
+            Confirmar Contraseña es requerida.
+          </div>
       </div>
       
       <button type="submit" class="btn btn-dark crear-button" [disabled]="!form.valid">Crear Usuario</button>

@@ -23,6 +23,7 @@ export class PersonalService {
   agregarPersonal(empleado: Empleado): Observable<Empleado> {
     return this.http.post<Empleado>('http://localhost:8080/api/empleados/agregar',empleado);
   }
+  
 
   crearUsuariOAPersonal(usuarioDTO:PersonaUsuarioDTO){
     return this.http.post<PersonaUsuarioDTO>('http://localhost:8080/api/empleados/crearusuario',usuarioDTO)

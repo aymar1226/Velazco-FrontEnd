@@ -23,6 +23,7 @@ export class AuthGuard implements CanActivate {
 
         
         if(token && emailverify){
+          
           if(email!=emailverify){
             localStorage.setItem('email',emailverify);
           }
