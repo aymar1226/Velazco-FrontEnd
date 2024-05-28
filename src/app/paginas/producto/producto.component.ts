@@ -37,7 +37,8 @@ export class ProductoComponent {
   constructor(
     private productoService: ProductoService,
     private carritoService:CarritoService,
-    private dataService: DataService  
+    private dataService: DataService,
+    private router: Router  
   ){
     this.productoDTO ={
       id: 0,
@@ -118,7 +119,7 @@ getProductosPorCategoria(id: number): void {
 
         this.agregarItem();
       },error =>{
-        Swal.fire('No se puedo obtener el producto')  
+        Swal.fire('No se pudo guardar el producto, tienes que iniciar sesion para comprar productos')  
         console.log('error al obtener el producto')
       } );
    }
@@ -127,24 +128,29 @@ getProductosPorCategoria(id: number): void {
 
   agregarItem() {
 
-    console.log(this.producto);
+    if(localStorage.getItem('email')){
+      console.log(this.producto);
 
-    if(this.producto){
-      this.productoDTO.id=this.producto.id;
-      this.productoDTO.cantidad=this.quantity;
-    }
-
-
-    console.log(this.productoDTO)
-    
-    if(this.productoDTO){
+      if(this.producto){
+        this.productoDTO.id=this.producto.id;
+        this.productoDTO.cantidad=this.quantity;
+      }
   
-      this.carritoService.guardarItem(this.productoDTO).subscribe(response=>{
-        Swal.fire('producto añadido al carrito')  
-        console.log(this.productoDTO);
-      })
+  
+      console.log(this.productoDTO)
+      
+      if(this.productoDTO){
+    
+        this.carritoService.guardarItem(this.productoDTO).subscribe(response=>{
+          Swal.fire('producto añadido al carrito')  
+          console.log(this.productoDTO);
+        })
+      }else{
+        Swal.fire('error al añadir a carrito')  
+      }
     }else{
-      Swal.fire('error al añadir a carrito')  
+      Swal.fire('Tienes que iniciar sesion para poder comprar productos')  
+      this.router.navigate(['/login'])
     }
   }
 

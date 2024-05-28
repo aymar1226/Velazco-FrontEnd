@@ -103,41 +103,44 @@ export class LoginComponent implements OnInit{
   registrarUsuario(form: NgForm){
       this.mensajeError="";
 
-      this.usuarioService.getUsuarioByCorreo(this.registro.correo).subscribe(usuarioObtenido=>{
-        console.log(usuarioObtenido);
+      if(form.valid){
 
-        this.mensajeError="El correo ya existe";
-
-
-      },error =>{
-        this.mensajeError="";
-        
+        this.usuarioService.getUsuarioByCorreo(this.registro.correo).subscribe(usuarioObtenido=>{
+          console.log(usuarioObtenido);
+  
+          this.mensajeError="El correo ya existe";
+  
+        },error =>{
           this.mensajeError="";
-          if(this.confirmarPaswword==this.registro.password){
-
-            this.mensajeError="";
-            console.log(this.registro);
           
-            if(this.registro){
-              this.usuarioService.registrarUsuario(this.registro).subscribe(response=>{
-      
-                Swal.fire('Usuario registrado con exito, puedes iniciar sesion')  
-                console.log(this.registro.correo)
-      
-                this.usuarioService.crearCarrito(this.registro.correo).subscribe(response=>{
-                  console.log("Nuevo carrito creado")
-                });
-                
-              },error=>{
-                Swal.fire('No se pudo registrar el usuario')  
-              })
-            }
-          }else{
-            this.mensajeError="Las contraseñas no coinciden";
-          }
-      })
-      
+            this.mensajeError="";
+            if(this.confirmarPaswword==this.registro.password){
+  
+              this.mensajeError="";
+              console.log(this.registro);
+            
+              if(this.registro){
+                this.usuarioService.registrarUsuario(this.registro).subscribe(response=>{
         
+                  Swal.fire('Usuario registrado con exito, puedes iniciar sesion')  
+                  console.log(this.registro.correo)
+        
+                  this.usuarioService.crearCarrito(this.registro.correo).subscribe(response=>{
+                    console.log("Nuevo carrito creado")
+                  });
+                  
+                },error=>{
+                  Swal.fire('No se pudo registrar el usuario')  
+                })
+              }
+            }else{
+              this.mensajeError="Las contraseñas no coinciden";
+            }
+        })
+
+      }else{
+        Swal.fire("Datos incorrectos")
+      }
       
   }
 

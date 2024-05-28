@@ -7,14 +7,20 @@
                 <h2 class="title">Iniciar Sesión</h2>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" [(ngModel)]="creds.email" name="correo" placeholder="Correo" #correoInput>
+                    <input type="email" [(ngModel)]="creds.email" name="correo" placeholder="Correo" #correoInput required>
+                    <div *ngIf="form.submitted && creds.email=='' " class="text-danger">
+                        Correo es requerido
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" [(ngModel)]="creds.password" name="contra" placeholder="Contraseña" #contraseñaInput>
+                    <input type="password" [(ngModel)]="creds.password" name="contra" placeholder="Contraseña" #contraseñaInput required>
+                    <div *ngIf="form.submitted && creds.password=='' " class="text-danger">
+                        Contraseña es requerida
+                    </div>
                 </div>
                 <div class="d-grid">
-                    <button class="btn-1">Ingresar</button>
+                    <button class="btn-1" [disabled]="form.invalid">Ingresar</button>
                 </div>
                 <p class="sin-reg"><a (click)="irInicio()">Continuar sin registrase</a></p>
                 <p class="account-text">¿No tienes una cuenta? <a href="" id="sign-up-btn2" #signUpBtn2>Registrarte</a></p>
@@ -31,14 +37,14 @@
                     <i class="fas fa-user"></i>
                     <input required name="apellido" type="text" placeholder="Primer Apellido" required [(ngModel)]="registro.ap_paterno">
                     <div *ngIf="form.submitted && registro.ap_paterno=='' " class="text-danger">
-                        Correo es requerido.
+                        Aperllido paterno es requerido
                     </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input type="text" placeholder="Segundo Apellido" name="ap_materno" required [(ngModel)]="registro.ap_materno">
                     <div *ngIf="form.submitted && registro.ap_materno=='' " class="text-danger">
-                        Correo es requerido.
+                        Apellido materno es requerido
                     </div>
                 </div>
                 <div class="input-field">
@@ -58,10 +64,14 @@
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Correo" name="correo" required [(ngModel)]="registro.correo">
-                    <div *ngIf="form.submitted && registro.correo=='' " class="text-danger">
-                        Correo es requerido.
-                    </div>
                 </div>
+                <div *ngIf="form.submitted && registro.correo=='' " class="text-danger">
+                    Correo es requerido.
+                </div>          
+                <div class="text-danger">
+                    {{mensajeError}}
+                </div>
+
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Contraseña" name="password" required [(ngModel)]="registro.password">
@@ -71,14 +81,15 @@
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Confirmar contraseña" required name="confirmarPaswword" [(ngModel)]="confirmarPaswword">
+                    <input type="password" placeholder="Confirmar contraseña" required name="confirmarPaswword" required [(ngModel)]="confirmarPaswword">
                     <div *ngIf="form.submitted && registro.password!=confirmarPaswword " class="text-danger">
                         Las contraseñas no coinciden
                     </div>
                 </div>
                 
                 <div class="d-grid">
-                    <button type="submit" class="btn-1">Registrar</button>
+                    
+                    <button type="submit" class="btn-1" [disabled]="!form.valid">Registrar</button>
                 </div>
 
                 
