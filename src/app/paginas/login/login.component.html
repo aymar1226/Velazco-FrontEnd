@@ -8,19 +8,19 @@
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
                     <input type="email" [(ngModel)]="creds.email" name="correo" placeholder="Correo" #correoInput required>
-                    <div *ngIf="form.submitted && creds.email=='' " class="text-danger">
-                        Correo es requerido
+                    <div *ngIf="form.submitted && correoInput.value == ''" class="text-danger">
+                        El correo es necesario.
                     </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" [(ngModel)]="creds.password" name="contra" placeholder="Contraseña" #contraseñaInput required>
-                    <div *ngIf="form.submitted && creds.password=='' " class="text-danger">
-                        Contraseña es requerida
+                    <input type="password" [(ngModel)]="creds.password" name="contra" placeholder="Contraseña" #contrasenaInput required>
+                    <div *ngIf="form.submitted && contrasenaInput.value == ''" class="text-danger">
+                        La contraseña es necesaria.
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button class="btn-1" [disabled]="form.invalid">Ingresar</button>
+                    <button class="btn-1" [disabled]="form.invalid" (click)="checkLoginFields(form)">Ingresar</button>
                 </div>
                 <p class="sin-reg"><a (click)="irInicio()">Continuar sin registrase</a></p>
                 <p class="account-text">¿No tienes una cuenta? <a href="" id="sign-up-btn2" #signUpBtn2>Registrarte</a></p>
@@ -32,6 +32,9 @@
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input required name="nombre" type="text" placeholder="Nombre" required [(ngModel)]="registro.nombre">
+                    <div *ngIf="form.submitted && registro.nombre=='' " class="text-danger">
+                        Nombre paterno es requerido
+                    </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
@@ -64,10 +67,11 @@
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Correo" name="correo" required [(ngModel)]="registro.correo">
+                    <div *ngIf="form.submitted && registro.correo=='' " class="text-danger">
+                        Correo es requerido.
+                    </div>     
                 </div>
-                <div *ngIf="form.submitted && registro.correo=='' " class="text-danger">
-                    Correo es requerido.
-                </div>          
+                     
                 <div class="text-danger">
                     {{mensajeError}}
                 </div>

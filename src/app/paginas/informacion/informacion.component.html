@@ -4,59 +4,49 @@
             <img (click)="irInformacion()" src="assets/layout/logo_size_invert-removebg-preview.png" class="logo"
                 alt="Logo">
             <input type="checkbox" id="menu">
-            <label for="menu">
-                <img src="assets/layout/menu.png" class="menu-icono" alt="">
-            </label>
+
             <nav class="navbar">
                 <ul>
                     <li><a (click)="irInformacion()">Inicio</a></li>
                     <li><a (click)="irnosotros()">Nosotros</a></li>
                     <li><a (click)="irproductos()">Productos</a></li>
                     <li><a (click)="ircontacto()">Contacto</a></li>
-                    <li><div *ngIf="mostrarBotonInicioSesion" class="btnLogin">
-                        <button (click)="irLogin()">
-                            Inicia Sesión
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div></li>
                     <li>
-                        <div class="usuario-options" *ngIf="!mostrarBotonInicioSesion">
-                            <i class="fas fa-user iconuser" (click)="toggleMenu()"></i>
-                            <div class="sub-menu-wrap" [style.max-height.px]="menuAbierto ? 430 : 0">
-                                <div class="sub-menu">
-                                    <!--
-                                    <div class="user-info">
-                                        <i class="fas fa-user"></i>
-                                        <h6>Nombre</h6>
-                                    </div> -->
-
-                                    <hr>
-                                    <a class="sub-menu-link" (click)="toggleAdministrar()">
-                                        <i class="fas fa-cogs"></i>
-                                        <p>Administrar</p>
-                                        <span>></span>
-                                    </a>
-                
-                                    <a href="#" class="sub-menu-link" (click)="togglePerfil()">
-                                        <i class="fas fa-user-circle"></i>
-                                        <p>Perfil</p>
-                                        <span>></span>
-                                    </a>
-                
-                                    <a href="#" class="sub-menu-link" (click)="cerrarSesion(); $event.preventDefault()">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                        <p>Cerrar Sesión</p>
-                                        <span>></span>
-                                    </a>
-                                </div>
-                            </div>
+                        <div *ngIf="mostrarBotonInicioSesion" class="btnLogin">
+                            <button (click)="irLogin()">
+                                Iniciar Sesión
+                            </button>
                         </div>
                     </li>
                 </ul>
             </nav>
+            <li>
+                <div class="usuario-options" *ngIf="!mostrarBotonInicioSesion">
+                    <i class="fas fa-user iconuser" (click)="toggleMenu()"></i>
+                    <div class="sub-menu-wrap" [ngClass]="{'cerrado': !menuAbierto}" [style.max-height.px]="menuAbierto ? 250 : 0">
+                        <div class="sub-menu">
+                            <a class="sub-menu-link" (click)="toggleAdministrar()">
+                                <i class="fas fa-cogs"></i>
+                                <p>Administrar</p>
+                            </a>
+
+                            <a href="#" class="sub-menu-link" (click)="togglePerfil()">
+                                <i class="fas fa-user-circle"></i>
+                                <p>Perfil</p>
+                            </a>
+
+                            <a href="#" class="sub-menu-link" (click)="cerrarSesion(); $event.preventDefault()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>Cerrar Sesión</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <label for="menu">
+                <img src="assets/layout/menu.png" class="menu-icono" alt="">
+            </label>
+            
         </div>
 
         <div class="header-content container">
@@ -175,7 +165,7 @@
                 <a href="" (click)="redirigirACategoria(4); $event.preventDefault()">Ver mas</a>
             </div>
 
-            
+
         </div>
     </section>
 

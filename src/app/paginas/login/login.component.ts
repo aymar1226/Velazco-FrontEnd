@@ -1,5 +1,5 @@
 //@ts-ignore
-import  Swal  from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { Component, ElementRef, Renderer2, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
@@ -14,18 +14,18 @@ import { error } from 'console';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
 
-  creds: Credentials ={
+  creds: Credentials = {
     email: '',
-    password:''
+    password: ''
   };
 
   registro: RegistroDTO;
-  confirmarPaswword: String='';
-  mensajeError: String='';
-  usuario? : Usuario;
+  confirmarPaswword: String = '';
+  mensajeError: String = '';
+  usuario?: Usuario;
 
   @ViewChild('signInBtn') signInBtn!: ElementRef;
   @ViewChild('signUpBtn') signUpBtn!: ElementRef;
@@ -33,17 +33,17 @@ export class LoginComponent implements OnInit{
   @ViewChild('signUpBtn2') signUpBtn2!: ElementRef;
   @ViewChild('container') container!: ElementRef;
 
-  constructor(private renderer: Renderer2, private router: Router, private usuarioService:UsuarioService, private snack:MatSnackBar) { 
-    this.registro={
-        correo: '',
-        password: '',
-    //  privilegio: '',
-        documento: '',
-        nombre: '',
-        ap_paterno: '',
-        ap_materno: '',
-        telefono: '',
-        direccion: 'Av. Ica', 
+  constructor(private renderer: Renderer2, private router: Router, private usuarioService: UsuarioService, private snack: MatSnackBar) {
+    this.registro = {
+      correo: '',
+      password: '',
+      //  privilegio: '',
+      documento: '',
+      nombre: '',
+      ap_paterno: '',
+      ap_materno: '',
+      telefono: '',
+      direccion: 'Av. Ica',
     }
   }
 
@@ -53,37 +53,37 @@ export class LoginComponent implements OnInit{
     localStorage.removeItem('token');
   }
 
-/*  formSubmit(){
-    console.log(this.user);
-
-    if(this.user.username == '' || this.user.username == null){
-      this.snack.open('El nombre de usuario es requerido !!','Aceptar',{
-        duration : 3000,
-        verticalPosition : 'top',
-        horizontalPosition : 'right'
-      });
-      return;
-    }
-
-
-    this.usuarioService.añadirUsuario(this.user).subscribe(
-      (data) => {
-        console.log(data);
-        Swal.fire('Usuario guardado','Usuario registrado con exito en el sistema','success');
-      },(error) => {
-        console.log(error);
-        this.snack.open('Ha ocurrido un error en el sistema !!','Aceptar',{
-          duration : 3000
+  /*  formSubmit(){
+      console.log(this.user);
+  
+      if(this.user.username == '' || this.user.username == null){
+        this.snack.open('El nombre de usuario es requerido !!','Aceptar',{
+          duration : 3000,
+          verticalPosition : 'top',
+          horizontalPosition : 'right'
         });
+        return;
       }
-    )
-  }*/
+  
+  
+      this.usuarioService.añadirUsuario(this.user).subscribe(
+        (data) => {
+          console.log(data);
+          Swal.fire('Usuario guardado','Usuario registrado con exito en el sistema','success');
+        },(error) => {
+          console.log(error);
+          this.snack.open('Ha ocurrido un error en el sistema !!','Aceptar',{
+            duration : 3000
+          });
+        }
+      )
+    }*/
 
 
-  login(form:NgForm){
-    console.log ('form value', form.value)
-    this.usuarioService.login(this.creds).subscribe(response =>{
-      Swal.fire('Credenciales correctas')  
+  login(form: NgForm) {
+    console.log('form value', form.value)
+    this.usuarioService.login(this.creds).subscribe(response => {
+      Swal.fire('Credenciales correctas')
       this.router.navigate(['/informacion']);
 
       /*if(response){
@@ -94,54 +94,63 @@ export class LoginComponent implements OnInit{
           duration : 3000
         });
       }*/
-    },error=>{
-      console.error("Error al iniciar sesion:",error)
+    }, error => {
+      console.error("Error al iniciar sesion:", error)
       Swal.fire('Credenciales incorrectas')
     })
   }
 
-  registrarUsuario(form: NgForm){
-      this.mensajeError="";
+  checkLoginFields(form: NgForm) {
+    if (form.invalid) {
+      // Si el formulario es inválido, ya se mostrarán los mensajes de error individualmente
+      return;
+    }
+    // Lógica adicional si es necesaria
+    this.login(form);
+  }
 
-      if(form.valid){
+  registrarUsuario(form: NgForm) {
+    this.mensajeError = "";
 
-        this.usuarioService.getUsuarioByCorreo(this.registro.correo).subscribe(usuarioObtenido=>{
-          console.log(usuarioObtenido);
-  
-          this.mensajeError="El correo ya existe";
-  
-        },error =>{
-          this.mensajeError="";
-          
-            this.mensajeError="";
-            if(this.confirmarPaswword==this.registro.password){
-  
-              this.mensajeError="";
-              console.log(this.registro);
-            
-              if(this.registro){
-                this.usuarioService.registrarUsuario(this.registro).subscribe(response=>{
-        
-                  Swal.fire('Usuario registrado con exito, puedes iniciar sesion')  
-                  console.log(this.registro.correo)
-        
-                  this.usuarioService.crearCarrito(this.registro.correo).subscribe(response=>{
-                    console.log("Nuevo carrito creado")
-                  });
-                  
-                },error=>{
-                  Swal.fire('No se pudo registrar el usuario')  
-                })
-              }
-            }else{
-              this.mensajeError="Las contraseñas no coinciden";
-            }
-        })
+    if (form.valid) {
 
-      }else{
-        Swal.fire("Datos incorrectos")
-      }
-      
+      this.usuarioService.getUsuarioByCorreo(this.registro.correo).subscribe(usuarioObtenido => {
+        console.log(usuarioObtenido);
+
+        this.mensajeError = "El correo ya existe";
+
+      }, error => {
+        this.mensajeError = "";
+
+        this.mensajeError = "";
+        if (this.confirmarPaswword == this.registro.password) {
+
+          this.mensajeError = "";
+          console.log(this.registro);
+
+          if (this.registro) {
+            this.usuarioService.registrarUsuario(this.registro).subscribe(response => {
+
+              Swal.fire('Usuario registrado con exito, puedes iniciar sesion')
+              console.log(this.registro.correo)
+
+              this.usuarioService.crearCarrito(this.registro.correo).subscribe(response => {
+                console.log("Nuevo carrito creado")
+              });
+
+            }, error => {
+              Swal.fire('No se pudo registrar el usuario')
+            })
+          }
+        } else {
+          this.mensajeError = "Las contraseñas no coinciden";
+        }
+      })
+
+    } else {
+      Swal.fire("Datos incorrectos")
+    }
+
   }
 
 
