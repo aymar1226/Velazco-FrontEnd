@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
   registrarUsuario(form: NgForm) {
     this.mensajeError = "";
 
-    if (form.valid) {
+    if (!form.valid) {
 
       this.usuarioService.getUsuarioByCorreo(this.registro.correo).subscribe(usuarioObtenido => {
         console.log(usuarioObtenido);
