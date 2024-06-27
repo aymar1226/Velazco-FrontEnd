@@ -1,0 +1,47 @@
+<div class="body">
+  <main class="main-container">
+      <div class="category-tabs">
+          <section>
+              <button class="btn-regresar" (click)="irCarrito()">
+                  <i class="fa fa-arrow-left "></i> Volver a carrito
+              </button>
+          </section>
+      </div>
+
+      <h2 class="carrito-titulo">Orden de Compra</h2>
+
+      <!-- Datos de la orden -->
+      <div class="orden-datos">
+          <p><strong>Nombre:</strong> {{nombre}}</p>
+          <p><strong>Correo:</strong> {{correo}}</p>
+          <p><strong>DNI:</strong> {{dni}}</p>
+      </div>
+
+      <!-- Mostrar mensaje de carrito vacío si no hay items en el carrito -->
+      <div *ngIf="carritoItems?.length === 0" class="contenedor-carrito carrito-vacio-contenedor">
+          <i class="fas fa-shopping-cart carrito-vacio-icono"></i>
+          <p class="carrito-vacio">El carrito está vacío</p>
+      </div>
+
+      <div class="contenedor-carrito" *ngIf="carritoItems && carritoItems.length > 0">
+          <div class="carrito-productos" *ngFor="let item of carritoItems">
+              <div class="carrito-producto">
+                  <img *ngIf="imagenesUrl[item.producto.id]" [src]="imagenesUrl[item.producto.id]" alt=""
+                      class="imagen img-fluid">
+                  <div class="carrito-producto-detalles">
+                      <div class="carrito-producto-info">
+                          <h3 class="carrito-producto-titulo">{{item.producto.nombre}}</h3>
+                          <p class="carrito-producto-cantidad"><strong>Cantidad:</strong> {{item.cantidad}}</p>
+                          <p class="carrito-producto-precio"><strong>Precio:</strong> {{item.producto.precio | soles}}</p>
+                          <p class="carrito-producto-subtotal"><strong>Subtotal:</strong> {{item.total | soles}}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="carrito-total">
+              <h3>Total: {{ total | soles}}</h3>
+              <button class="btn btn-warning" (click)="irPago()">Proceder al Pago</button>
+          </div>
+      </div>
+  </main>
+</div>

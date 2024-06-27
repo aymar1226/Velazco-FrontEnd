@@ -16,13 +16,15 @@ export class CarritoComponent implements OnInit{
 
   imagenesUrl: { [key: number]: string } = {};
 
-  carritoItems? : CarritoItem[];
+  carritoItems? : CarritoItem[] = [];
+
+  total: number=0;
 
   producto:number=0;
 
 
 
-  constructor(private carritoService:CarritoService,private inicioComponent:InicioComponent, private productoService:ProductoService){
+  constructor(private carritoService:CarritoService,private router: Router, private productoService:ProductoService){
 
   }
   
@@ -35,6 +37,7 @@ export class CarritoComponent implements OnInit{
     if(email){
     this.carritoService.getItems(email).subscribe(items=>{
       this.carritoItems=items;
+      this.calcularTotal();
 
       this.carritoItems.forEach(item => {
 
@@ -55,22 +58,43 @@ export class CarritoComponent implements OnInit{
     }
   }
 
+  calcularTotal() {
+    this.total = this.carritoItems?.reduce((sum, item) => sum + item.total, 0) || 0;
+  }
+
   irInicio(): void{
-    this.inicioComponent.toggleCarrito();
+    this.router.navigate(['/inicio/productos'])
   }
 
 
-  eliminarItem(id:number){
-    console.log(id);
-
-    this.carritoService.deleteItem(id).subscribe({
-      next:() =>{
-        console.log('Item eliminado con éxito');
-        this.listarItems();
-      },error:(err) =>{
-        console.error('Error al eliminar el ítem:', err);
+  eliminarItem(id: number, nombre: String) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Estás seguro de que quieres eliminar ${nombre}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.carritoService.deleteItem(id).subscribe({
+          next: () => {
+            Swal.fire('Eliminado', 'El producto ha sido eliminado del carrito.', 'success');
+            this.listarItems();
+          },
+          error: (err) => {
+            console.error('Error al eliminar el ítem:', err);
+            Swal.fire('Error', 'Hubo un problema al eliminar el producto. Por favor, inténtelo de nuevo.', 'error');
+          }
+        });
       }
     });
+  }
+
+  irOrden():void{
+    this.router.navigate(['/inicio/orden'])
   }
 
 

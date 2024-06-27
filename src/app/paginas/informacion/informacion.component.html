@@ -30,7 +30,7 @@
                                 <p>Administrar</p>
                             </a>
 
-                            <a href="#" class="sub-menu-link" (click)="togglePerfil()">
+                            <a class="sub-menu-link" (click)="irPerfil()">
                                 <i class="fas fa-user-circle"></i>
                                 <p>Perfil</p>
                             </a>
@@ -141,16 +141,16 @@
 
         <div class="producto-group">
             <div class="producto-1">
-                <img src="assets/layout/galletas.jpg" alt="">
-                <h3>Galletas</h3>
-                <p>Paciencia, Revolución y más</p>
-                <a href="" (click)="redirigirACategoria(2); $event.preventDefault()">Ver mas</a>
-            </div>
-            <div class="producto-1">
                 <img src="assets/layout/bizcochos.jpg" alt="">
                 <h3>Bizcochos</h3>
                 <p>Pitipan, Panes, Toritos y más</p>
                 <a href="" (click)="redirigirACategoria(1); $event.preventDefault()">Ver mas</a>
+            </div>
+            <div class="producto-1">
+                <img src="assets/layout/galletas.jpg" alt="">
+                <h3>Galletas</h3>
+                <p>Paciencia, Revolución y más</p>
+                <a href="" (click)="redirigirACategoria(2); $event.preventDefault()">Ver mas</a>
             </div>
             <div class="producto-1">
                 <img src="assets/layout/pasteles.jpg" alt="">

@@ -14,72 +14,94 @@ import { CrearProductoComponent } from './paginas/admin/crud-productos/crear-pro
 import { EditarProductoComponent } from './paginas/admin/crud-productos/editar-producto/editar-producto.component';
 import { CrearUsuarioComponent } from './paginas/admin/crud-usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './paginas/admin/crud-usuarios/editar-usuario/editar-usuario.component';
+import { OrdenComponent } from './paginas/orden/orden.component';
+import { PagoComponent } from './paginas/pago/pago.component';
+import { PerfilComponent } from './paginas/perfil/perfil.component';
 
 const routes: Routes = [
-  { path: '',
+  {
+    path: '',
     redirectTo: '/informacion',
-    pathMatch: 'full' 
+    pathMatch: 'full'
   },
-  { path: 'index',
+  {
+    path: 'index',
     component: IndexComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'login',
+  {
+    path: 'login',
     component: LoginComponent,
   },
-  
-  { path: 'inicio',
+
+  {
+    path: 'inicio',
     component: InicioComponent,
+    children: [
+      { path: '', component: ProductoComponent },
+      { path: 'productos', component: ProductoComponent },
+      { path: 'carrito', component: CarritoComponent },
+      { path: 'orden', component: OrdenComponent },
+      { path: 'pago', component: PagoComponent }
+    ]
   },
 
-  { path: 'inicio/:mostrarBotonInicioSesion',
+  {
+    path: 'inicio/:mostrarBotonInicioSesion',
     component: InicioComponent,
     canActivate: [AuthGuard]
 
   },
-  { path: 'informacion',
+  {
+    path: 'informacion',
     component: InformacionComponent,
-    
+
   },
-  { path: 'prueba',
+  {
+    path: 'prueba',
     component: PruebaComponent,
     canActivate: [AuthGuard]
 
   },
-  { path: 'carrito',
+  {
+    path: 'carrito',
     component: CarritoComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'menu',
+  {
+    path: 'menu',
     component: ProductoComponent,
   },
   {
-    path:'admin',
+    path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'admin/productos',
+    path: 'admin/productos',
     component: CrudProductosComponent,
     canActivate: [AuthGuard]
   },
+  { path: 'perfil', 
+    component: PerfilComponent,
+  },
   {
-    path:'crear/producto',
+    path: 'crear/producto',
     component: CrearProductoComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'editar/producto',
+    path: 'editar/producto',
     component: EditarProductoComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'crear/usuario',
+    path: 'crear/usuario',
     component: CrearUsuarioComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'editar/usuario',
+    path: 'editar/usuario',
     component: EditarUsuarioComponent,
     canActivate: [AuthGuard]
   },

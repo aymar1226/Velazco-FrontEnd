@@ -35,7 +35,8 @@
 
 .product {
     border: 1px solid brown;
-    background-color: #fffaf0; /* Beige, para un contraste sutil con el fondo */
+    background-color: #fffaf0;
+    /* Beige, para un contraste sutil con el fondo */
     text-align: center;
     margin: 10px;
     padding: 10px;
@@ -50,7 +51,8 @@
     height: 200px;
     object-fit: cover;
     margin-bottom: 10px;
-    border-radius: 10px 10px 0 0; /* Redondear esquinas superiores */
+    border-radius: 10px 10px 0 0;
+    /* Redondear esquinas superiores */
 }
 
 .product-name {
@@ -69,7 +71,8 @@
 .product-price {
     font-weight: bold;
     font-size: 1.4rem;
-    color: brown; /* Un tono de marrón oscuro */
+    color: brown;
+    /* Un tono de marrón oscuro */
     margin-bottom: 10px;
 }
 
@@ -93,7 +96,8 @@
 }
 
 .quantity-btn:hover {
-    background-color: #d2691e; /* Chocolate */
+    background-color: #d2691e;
+    /* Chocolate */
 }
 
 #quantity {
@@ -127,11 +131,13 @@
 
 .custom-btn.comprar {
     color: white;
-    background-color: brown; /* Fondo marrón oscuro */
+    background-color: brown;
+    /* Fondo marrón oscuro */
 }
 
 .custom-btn.comprar:hover {
-    background-color: #d2691e; /* Chocolate, un marrón más claro para el hover */
+    background-color: #d2691e;
+    /* Chocolate, un marrón más claro para el hover */
     color: antiquewhite;
 }
 
@@ -161,8 +167,49 @@
 
 
 @media (max-width: 600px) {
+    .category-tabs {
+        text-align: center;
+        margin-bottom: 20px;
+        width: 100%;
+        /* Asegúrate de que ocupe todo el ancho */
+    }
+
+    .category-tabs section {
+        display: flex;
+        flex-direction: column;
+        /* Disponer las pestañas en una columna */
+        align-items: center;
+    }
+
     .category-tabs .tab-link {
         display: block;
+        width: 90%;
+        /* Ajusta el ancho para que no ocupe todo el ancho de la pantalla */
+        margin: 10px 0;
+        /* Espacio entre las pestañas */
+        background-color: #f1f1f1;
+        color: black;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 20px;
+        font-size: 17px;
+        border-radius: 15px;
+        /* Redondear las esquinas */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Añadir sombra */
+        transition: background-color 0.3s, color 0.3s;
+        /* Transición suave para cambios de color */
+    }
+
+    .category-tabs .tab-link:hover {
+        background-color: #666;
+        color: white;
+    }
+
+    .category-tabs .tab-link.selected {
+        background-color: #030303;
+        color: #fff;
     }
 }
 
@@ -179,5 +226,5 @@ footer {
 
 .tab-link.selected {
     background-color: #030303;
-    color: #fff; 
-  }
+    color: #fff;
+}

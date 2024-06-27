@@ -1,0 +1,61 @@
+<div class="body">
+  <main class="main-container">
+    <div class="category-tabs">
+      <section>
+        <button class="btn-regresar" (click)="irOrden()">
+          <i class="fa fa-arrow-left "></i> Volver a orden
+        </button>
+      </section>
+    </div>
+
+    <h2 class="pago-titulo">Proceso de Pago</h2>
+
+    <div class="pago-form">
+      <div class="facturacion">
+        <h3>DIRECCIÓN DE LA FACTURACIÓN</h3>
+        <label for="email">Gmail:</label>
+        <input type="email" id="email" placeholder="example@example.com">
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" placeholder="calle - localidad">
+
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" placeholder="ica">
+      </div>
+
+      <div class="tarjeta">
+        <h3>TARJETA</h3>
+        <label>Tarjetas Aceptadas :</label>
+        <div class="tarjetas-aceptadas">
+          <img src="assets/layout/paypal.png" alt="PayPal">
+          <img src="assets/layout/mastercard.png" alt="MasterCard">
+          <img src="assets/layout/amex.png" alt="American Express">
+          <img src="assets/layout/visa.png" alt="Visa">
+        </div>
+
+        <label for="titular">Titular De La Tarjeta:</label>
+        <input type="text" id="titular" placeholder="mr. john doe">
+
+        <label for="numero-tarjeta">Numero De Tarjeta:</label>
+        <input type="text" id="numero-tarjeta" placeholder="1111-2222-3333-4444">
+
+        <div class="expiracion-cvv">
+          <div class="expiracion-cvv-item">
+            <label for="mes-expiracion">Mes De Exp.:</label>
+            <input type="text" id="mes-expiracion" placeholder="january">
+          </div>
+          <div class="expiracion-cvv-item">
+            <label for="ano-expiracion">Año De Exp.:</label>
+            <input type="text" id="ano-expiracion" placeholder="2022">
+          </div>
+          <div class="expiracion-cvv-item">
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" placeholder="123">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-procesar-pago" (click)="procesarPago()">Procesar El Pago</button>
+  </main>
+</div>

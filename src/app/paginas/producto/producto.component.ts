@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { Categoria, Producto, ProductoDTO } from '../../model';
@@ -15,15 +15,16 @@ import { DataService } from '../../services/data.service';
 export class ProductoComponent {
   imagenesUrl: { [key: number]: string } = {};
   categorias?: Categoria[];
-  categoriaSeleccionada?: number=1;
+  categoriaSeleccionada?: number = 1;
   productos?: Producto[];
+  nombreCategoriaSeleccionada: String = '';
 
-  producto?:Producto;
+  producto?: Producto;
 
   productoDTO: ProductoDTO;
 
 
-  mostrarBotonInicioSesion : boolean = true;
+  mostrarBotonInicioSesion: boolean = true;
   menuAbierto: boolean = false;
   administrarAbierto: boolean = false;
   perfilAbierto: boolean = false;
@@ -32,15 +33,15 @@ export class ProductoComponent {
   variable: any;
 
 
-  
+
 
   constructor(
     private productoService: ProductoService,
-    private carritoService:CarritoService,
+    private carritoService: CarritoService,
     private dataService: DataService,
-    private router: Router  
-  ){
-    this.productoDTO ={
+    private router: Router
+  ) {
+    this.productoDTO = {
       id: 0,
       cantidad: 0
     }
@@ -53,103 +54,129 @@ export class ProductoComponent {
     this.getCategorias();
 
     this.dataService.currentVariable.subscribe(variable => {
-      if(variable){
+      if (variable) {
         this.categoriaSeleccionada = variable;
       }
     });
-    
-    if(this.categoriaSeleccionada){
+
+    if (this.categoriaSeleccionada) {
       this.getProductosPorCategoria(this.categoriaSeleccionada);
 
     }
-    
-    
+
+
   }
-/*----------------------------------------ANIMACIONES---------------------------------------*/
+  /*----------------------------------------ANIMACIONES---------------------------------------*/
 
-decrement() {
-  if (this.quantity > 1) {
-    this.quantity--;
+  decrement() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
   }
-}
 
-increment() {
-  this.quantity++;
-}
+  increment() {
+    this.quantity++;
+  }
 
 
-/*----------------------------------Productos---------------------------------------*/
-getProductosPorCategoria(id: number): void {
-  
-  this.productoService.getProductosPorCategoria(id)
-    .subscribe(productos =>{
-       this.productos = productos;
+  /*----------------------------------Productos---------------------------------------*/
+  getProductosPorCategoria(id: number): void {
 
-       productos.forEach(producto => {
-        this.productoService.obtenerImagenProducto(producto.id).subscribe((imagen: Blob) => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            this.imagenesUrl[producto.id] = reader.result as string;
-          };
-          reader.readAsDataURL(imagen);
+    this.productoService.getProductosPorCategoria(id)
+      .subscribe(productos => {
+        this.productos = productos;
+
+        productos.forEach(producto => {
+          this.productoService.obtenerImagenProducto(producto.id).subscribe((imagen: Blob) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              this.imagenesUrl[producto.id] = reader.result as string;
+            };
+            reader.readAsDataURL(imagen);
+          });
         });
       });
+  }
+
+  getCategorias(): Promise<void> {
+    return new Promise((resolve) => {
+      this.productoService.getCategorias()
+        .subscribe(categorias => {
+          this.categorias = categorias;
+          const categoria = this.categorias?.find(cat => cat.id === this.categoriaSeleccionada);
+          if (categoria) {
+            this.nombreCategoriaSeleccionada = categoria.nombre;
+          }
+          resolve();
+        });
     });
   }
 
-  getCategorias(): void {
-    this.productoService.getCategorias()
-      .subscribe(categorias => this.categorias = categorias);
-  }
-  
   seleccionarCategoria(id: number): void {
     this.categoriaSeleccionada = id;
     this.getProductosPorCategoria(id);
+    const categoria = this.categorias?.find(cat => cat.id === id);
+    if (categoria) {
+      this.nombreCategoriaSeleccionada = categoria.nombre;
+    }
   }
 
   estaSeleccionada(id: number): boolean {
-    return this.categoriaSeleccionada===id;
+    return this.categoriaSeleccionada === id;
   }
 
-  obtenerProducto(id:number){
-      if(id){
-      this.productoService.getProductobyId(id).subscribe(productoObtenido =>{
-        this.producto=productoObtenido;
+  obtenerProducto(id: number) {
+    if (id) {
+      this.productoService.getProductobyId(id).subscribe(productoObtenido => {
+        this.producto = productoObtenido;
         console.log(productoObtenido);
 
         this.agregarItem();
-      },error =>{
-        Swal.fire('No se pudo guardar el producto, tienes que iniciar sesion para comprar productos')  
+      }, error => {
+        Swal.fire('No se pudo guardar el producto, tienes que iniciar sesion para comprar productos')
         console.log('error al obtener el producto')
-      } );
-   }
+      });
+    }
   }
 
 
   agregarItem() {
 
-    if(localStorage.getItem('email')){
+    if (localStorage.getItem('email')) {
       console.log(this.producto);
 
-      if(this.producto){
-        this.productoDTO.id=this.producto.id;
-        this.productoDTO.cantidad=this.quantity;
+      if (this.producto) {
+        this.productoDTO.id = this.producto.id;
+        this.productoDTO.cantidad = this.quantity;
       }
-  
-  
+
+
       console.log(this.productoDTO)
-      
-      if(this.productoDTO){
-    
-        this.carritoService.guardarItem(this.productoDTO).subscribe(response=>{
-          Swal.fire('producto añadido al carrito')  
+
+      if (this.productoDTO) {
+
+        this.carritoService.guardarItem(this.productoDTO).subscribe(response => {
+          Swal.fire({
+            title: 'Producto añadido al carrito',
+            text: '¿Qué te gustaría hacer ahora?',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#d2691e',  // color chocolate
+            cancelButtonColor: '#8b4513',  // color marrón
+            confirmButtonText: 'Ir al carrito',
+            cancelButtonText: 'Seguir comprando'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/inicio/carrito']);
+            }
+          });
           console.log(this.productoDTO);
         })
-      }else{
-        Swal.fire('error al añadir a carrito')  
+      } else {
+        Swal.fire('error al añadir a carrito')
       }
-    }else{
-      Swal.fire('Tienes que iniciar sesion para poder comprar productos')  
+    } else {
+      Swal.fire('Tienes que iniciar sesion para poder comprar productos')
       this.router.navigate(['/login'])
     }
   }

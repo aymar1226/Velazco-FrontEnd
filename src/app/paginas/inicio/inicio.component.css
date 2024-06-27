@@ -26,6 +26,8 @@ header {
     background-color: black;
     padding: 10px;
     justify-content: space-between;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 header .logo {
@@ -34,25 +36,38 @@ header .logo {
     height: auto;
 }
 
+
+
 header .title {
     color: wheat;
     font-size: 50px;
 }
 
-header .carrito{
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Ajusta el espacio entre los elementos según sea necesario */
+}
+
+.header-actions .carrito {
     cursor: pointer;
     background-color: bisque;
     padding: 10px;
-    border-radius: 180%;
+    border-radius: 50%;
+    position: relative;
     margin-left: auto;
+    z-index: 10;
 }
 
-.carrito .fas{
+.carrito .cart {
+    color: black;
+    height: 30px;
     font-size: 25px;
 }
 
 
-header .search-form {
+.header-actions .search-form {
     padding: 5px;
     border-radius: 125px;
     margin-left: auto;
@@ -238,20 +253,21 @@ header .search-form {
     animation-play-state: paused;
 }
 
-.usuario-options{
-    margin-left: 20px;
+.usuario-options {
+    cursor: pointer;
+    background-color: bisque;
+    padding: 10px;
+    border-radius: 50%;
     position: relative;
 }
 
-.usuario-options .iconuser{
-    padding: 10px;
-    background-color: bisque;
+.usuario-options .iconuser {
     color: black;
-    font-size: 40px;
-    border-radius: 50px;
+    height: 30px;
+    font-size: 30px;
 }
 
-.sub-menu-wrap{
+.sub-menu-wrap {
     position: absolute;
     top: 100%;
     right: 10%;
@@ -261,42 +277,43 @@ header .search-form {
     transition: max-height 0.5s;
 }
 
-.sub-menu-wrap .open-menu{
+.sub-menu-wrap .open-menu {
     max-height: 400px;
 }
 
-.sub-menu{
+.sub-menu {
     background: bisque;
     padding: 20px;
     margin: 10px;
 }
 
-.sub-menu .user-info{
+.sub-menu .user-info {
     display: flex;
     align-items: center;
 }
 
-.sub-menu .user-info h2{
+.sub-menu .user-info h2 {
     margin-left: 10px;
     font-weight: 500;
     margin-bottom: 0px;
 }
 
-.sub-menu .user-info i{
+.sub-menu .user-info i {
     font-size: 25px;
     border-radius: 50%;
     margin-right: 15px;
 }
 
-.sub-menu hr{
+.sub-menu hr {
     border: 0;
     height: 1px;
     width: 100%;
     background: #000;
-    margin: 15px 0 10px;;
+    margin: 15px 0 10px;
+    ;
 }
 
-.sub-menu-link{
+.sub-menu-link {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -305,155 +322,163 @@ header .search-form {
     margin: 12px 0;
 }
 
-.sub-menu-link p{
+.sub-menu-link p {
     margin-left: 10px;
     flex: 1;
     margin: auto;
     width: 100%;
 }
 
-.sub-menu-link i{
+.sub-menu-link i {
     font-size: 25px;
     width: 40px;
 }
 
-.sub-menu-link span{
+.sub-menu-link span {
     font-size: 22px;
     transition: transform 0.5s;
 }
 
-.sub-menu-link:hover span{
+.sub-menu-link:hover span {
     transform: translateX(5px);
 }
 
-.sub-menu-link:hover p{
+.sub-menu-link:hover p {
     font-weight: 600;
 }
 
 
-.category-tabs {
-    text-align: left;
-    margin-bottom: 20px;
-    width: 50;
+@media (max-width: 1015px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .title {
+        font-size: 40px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .header-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        /* Ajustar el espacio entre los elementos según sea necesario */
+    }
+
+    .header-actions .carrito,
+    .header-actions .btnLogin,
+    .header-actions .usuario-options {
+        margin: 0px;
+    }
+
+    .header-actions .search-form {
+        padding: 5px;
+        max-width: 300px;
+        /* Ajustar el ancho máximo del formulario de búsqueda */
+        flex: 1 1 200px;
+        /* Permitir que el formulario de búsqueda se ajuste según el espacio disponible */
+    }
+
+    .sub-menu-wrap {
+        right: 0;
+        /* Alinear el submenú con el borde derecho */
+    }
+
+    .sub-menu-wrap .open-menu {
+        max-height: 400px;
+    }
+
+    .usuario-options .iconuser {
+        font-size: 26px;
+        /* Ajustar el tamaño del icono del usuario */
+    }
+
+    .carrito .cart {
+        font-size: 22px;
+        /* Ajustar el tamaño del icono del carrito */
+    }
+
+    .btnLogin button {
+        width: auto;
+        /* Ajustar el ancho del botón de inicio de sesión */
+        padding: 10px 20px;
+        /* Añadir padding para mejorar la apariencia */
+    }
+
+    
 }
 
-.tab-link {
-    width: 125px;
-    background-color: #f1f1f1;
-    color: black;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 20px;
-    font-size: 17px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    margin: 0 4px;
-}
 
-.tab-link:hover {
-    background-color: #ddd;
-}
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.tab-link.active {
-    background-color: #666;
-    color: white;
-}
+    header .title {
+        font-size: 30px;
+        margin-bottom: 10px;
+        /* Añadir espacio entre el título y las acciones del header */
+        text-align: center;
+    }
 
-.product-listing {
-    display: flex;
-    width: 100%;
-    height: max-content;
-    flex-wrap: wrap;
-    padding: 20px;
-    justify-content: space-around;
-}
+    .header-actions {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        /* Ajustar el espacio entre los elementos según sea necesario */
+    }
 
-.product {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color:burlywood;
-    margin: 10px;
-    padding: 10px;
-    width: 300px;
-    box-sizing: border-box;
-}
+    .header-actions .carrito,
+    .header-actions .btnLogin,
+    .header-actions .usuario-options {
+        margin: 0 5px;
+    }
 
-.product-image {
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-}
+    .sub-menu-wrap {
+        right: 0;
+        /* Alinear el submenú con el borde derecho */
+    }
 
-.product-name {
-    color: black;
-}
-
-.product-description {
-    font-size: 0.9rem;
-    color: white;
-
-}
-
-.product-price {
-    font-weight: bold;
-    font-size: 22px;
-}
-
-.product a {
-    cursor: pointer;
-    color: brown;
-    font-size: 25px;
-    text-decoration: none;
-    margin: auto;
-    display: block;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 200px;
-    height: 70px;
-    line-height: 80px;
-    text-align: center;
-    transition: all .4s ease;
-    z-index: 1;
-}
-
-.product a:after{
-    content: '';
-    display: block;
-    background: brown;
-    width: 100%;
-    height: 5px;
-    margin-top: -20px;
-    transition: all .4s ease;
-}
-
-.product a:hover:after {
-    transform: translate(0, -50px);
-    width: 100%;
-    height: 50px;
-    opacity: .0;
-  }
-
-  .product a:hover {
-    color: #000;
-  }
-@media (max-width: 600px) {
-    .category-tabs .tab-link {
-        display: block;
+    .sub-menu-wrap .open-menu {
+        max-height: 400px;
     }
 }
 
+@media (max-width: 480px) {
+    header .logo {
+        width: 80px;
+    }
 
-main {
-    flex: 1;
-}
+    .header .title {
+        font-size: 24px;
+    }
 
-footer {
-    text-align: center;
-    padding: 1em;
-    background-color: #f3f3f3;
+    .header-actions .search-form {
+        padding: 2px;
+    }
+
+    .header-actions .carrito .cart {
+        font-size: 20px;
+    }
+
+    .usuario-options .iconuser {
+        font-size: 24px;
+    }
+
+    .sub-menu .user-info h2 {
+        font-size: 18px;
+    }
+
+    .sub-menu-wrap {
+        right: -60px;
+        /* Alinear el submenú con el borde derecho */
+    }
+
+    .sub-menu-link i,
+    .sub-menu-link span {
+        font-size: 20px;
+    }
 }

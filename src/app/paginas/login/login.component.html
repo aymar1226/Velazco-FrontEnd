@@ -3,24 +3,24 @@
         <div class="signin-signup">
 
             <!-------------------------------FORMULARIO INICIAR SESIÓN------------------------------------------->
-            <form action="" class="sign-in-form" #form="ngForm" (ngSubmit)="login(form)">
+            <form action="" class="sign-in-form" #form="ngForm" (ngSubmit)="checkLoginFields(form)">
                 <h2 class="title">Iniciar Sesión</h2>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" [(ngModel)]="creds.email" name="correo" placeholder="Correo" #correoInput required>
-                    <div *ngIf="form.submitted && correoInput.value == ''" class="text-danger">
+                    <input type="email" [(ngModel)]="creds.email" name="correo" placeholder="Correo" #correoInput="ngModel" required>
+                    <div *ngIf="correoInput.invalid && (correoInput.dirty || correoInput.touched)" class="text-danger">
                         El correo es necesario.
                     </div>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" [(ngModel)]="creds.password" name="contra" placeholder="Contraseña" #contrasenaInput required>
-                    <div *ngIf="form.submitted && contrasenaInput.value == ''" class="text-danger">
+                    <input type="password" [(ngModel)]="creds.password" name="contra" placeholder="Contraseña" #contrasenaInput="ngModel" required>
+                    <div *ngIf="contrasenaInput.invalid && (contrasenaInput.dirty || contrasenaInput.touched)" class="text-danger">
                         La contraseña es necesaria.
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button class="btn-1" [disabled]="form.invalid" (click)="checkLoginFields(form)">Ingresar</button>
+                    <button class="btn-1" type="submit">Ingresar</button>
                 </div>
                 <p class="sin-reg"><a (click)="irInicio()">Continuar sin registrase</a></p>
                 <p class="account-text">¿No tienes una cuenta? <a href="" id="sign-up-btn2" #signUpBtn2>Registrarte</a></p>

@@ -50,6 +50,9 @@ import { CrudProveedoresComponent } from './paginas/admin/crud-proveedores/crud-
 import { CrearProveedorComponent } from './paginas/admin/crud-proveedores/crear-proveedor/crear-proveedor.component';
 import { EditarProveedorComponent } from './paginas/admin/crud-proveedores/editar-proveedor/editar-proveedor.component';
 import { CrearUsuarioEmpleadoComponent } from './paginas/admin/crud-empleados/crear-usuario-empleado/crear-usuario-empleado.component';
+import { SolesPipe } from './pipes/soles.pipe';
+import { OrdenComponent } from './paginas/orden/orden.component';
+import { PerfilComponent } from './paginas/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,10 @@ import { CrearUsuarioEmpleadoComponent } from './paginas/admin/crud-empleados/cr
     CrudProveedoresComponent,
     CrearProveedorComponent,
     EditarProveedorComponent,
-    CrearUsuarioEmpleadoComponent
+    CrearUsuarioEmpleadoComponent,
+    OrdenComponent,
+    SolesPipe,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

@@ -16,52 +16,52 @@ export class InformacionComponent {
   @ViewChild('productos') miDivRef1!: ElementRef;
   @ViewChild('contacto') miDivRef2!: ElementRef;
 
-  mostrarBotonInicioSesion : boolean = true;
+  mostrarBotonInicioSesion: boolean = true;
   menuAbierto: boolean = false;
 
 
   constructor(
-    private router:Router,
-    private usuarioService:UsuarioService,
-    private dataService:DataService,
-    private activaterouter:ActivatedRoute
-  ){}
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private dataService: DataService,
+    private activaterouter: ActivatedRoute
+  ) { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
 
-      this.activaterouter.params.subscribe(params => {
+    this.activaterouter.params.subscribe(params => {
 
-        if(localStorage.getItem('email'))
+      if (localStorage.getItem('email'))
         this.mostrarBotonInicioSesion = params['mostrarBotonInicioSesion'] === 'true';
-      
-      });
-    }
+
+    });
+  }
 
 
-  irInformacion(): void{
+  irInformacion(): void {
     this.router.navigate(['/informacion'])
   }
-  irnosotros(): void{
-    this.miDivRef.nativeElement.scrollIntoView({behavior: "smooth"});
+  irnosotros(): void {
+    this.miDivRef.nativeElement.scrollIntoView({ behavior: "smooth" });
   }
-  irproductos(): void{
-    this.miDivRef1.nativeElement.scrollIntoView({behavior: "smooth"});
+  irproductos(): void {
+    this.miDivRef1.nativeElement.scrollIntoView({ behavior: "smooth" });
   }
-  ircontacto(): void{
-    this.miDivRef2.nativeElement.scrollIntoView({bahavior: "smooth"})
-  }    
+  ircontacto(): void {
+    this.miDivRef2.nativeElement.scrollIntoView({ bahavior: "smooth" })
+  }
 
-  redirigirACategoria(variable:number){
+  redirigirACategoria(variable: number) {
     this.dataService.changeVariable(variable);
-    this.router.navigate(['/inicio']);
+    this.router.navigate(['/inicio/productos']);
   }
 
-  irLogin(): void{
+  irLogin(): void {
     this.router.navigate(['/login'])
   }
-  
 
-  cerrarSesion():void{
+
+  cerrarSesion(): void {
     Swal.fire("Sesion cerrada exitosamente")
     this.router.navigate(['/login'])
   }
@@ -70,13 +70,14 @@ export class InformacionComponent {
     this.menuAbierto = !this.menuAbierto;
   }
 
-  
+
 
   toggleAdministrar(): void {
     this.router.navigate(['/admin']);
   }
 
-  togglePerfil(): void {
+  irPerfil(): void {
+    this.router.navigate(['/perfil'])
   }
 
 }

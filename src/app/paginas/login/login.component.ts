@@ -80,33 +80,35 @@ export class LoginComponent implements OnInit {
     }*/
 
 
-  login(form: NgForm) {
-    console.log('form value', form.value)
-    this.usuarioService.login(this.creds).subscribe(response => {
-      Swal.fire('Credenciales correctas')
-      this.router.navigate(['/informacion']);
-
-      /*if(response){
-        Swal.fire('Credenciales correctas')
-        this.router.navigate(['/informacion']);
-      }else{
-        this.snack.open("Credenciales incorrectas",'Ok',{
-          duration : 3000
-        });
-      }*/
-    }, error => {
-      console.error("Error al iniciar sesion:", error)
-      Swal.fire('Credenciales incorrectas')
-    })
-  }
-
   checkLoginFields(form: NgForm) {
+    form.form.markAllAsTouched(); // Marcar todos los campos como tocados
+
     if (form.invalid) {
-      // Si el formulario es inválido, ya se mostrarán los mensajes de error individualmente
+      // Si el formulario es inválido, no hacer nada más
       return;
     }
-    // Lógica adicional si es necesaria
+
+    // Si el formulario es válido, proceder con el login
     this.login(form);
+  }
+
+  login(form: NgForm) {
+    this.usuarioService.login(this.creds).subscribe(
+      response => {
+        Swal.fire({
+          title: 'Credenciales correctas',
+          timer: 1000, // tiempo en milisegundos que el mensaje se mostrará
+          timerProgressBar: true,
+          showConfirmButton: false
+        }).then(() => {
+          this.router.navigate(['/informacion']);
+        });
+      },
+      error => {
+        console.error("Error al iniciar sesión:", error);
+        Swal.fire('Credenciales incorrectas');
+      }
+    );
   }
 
   registrarUsuario(form: NgForm) {

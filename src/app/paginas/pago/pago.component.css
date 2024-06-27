@@ -1,0 +1,166 @@
+.body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FAEBD7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px;
+}
+
+.category-tabs {
+    margin-bottom: 20px;
+}
+
+.btn-regresar {
+    background-color: transparent;
+    padding: 8px 7px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-regresar:hover {
+    background-color: #d6d6d6;
+}
+
+.pago-titulo {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.pago-form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.facturacion,
+.tarjeta {
+    width: 48%;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.facturacion h3,
+.tarjeta h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.expiracion-cvv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.expiracion-cvv-item {
+    width: 32%;
+}
+
+.tarjetas-aceptadas img {
+    width: 50px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-procesar-pago {
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.btn-procesar-pago:hover {
+    background-color: brown;
+}
+
+@media (max-width: 900px) {
+    .main-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .pago-form {
+        flex-direction: column;
+    }
+
+    .facturacion,
+    .tarjeta {
+        width: 100%;
+    }
+}
+
+@media (max-width :480px){
+    .main-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .pago-form {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .facturacion, .tarjeta {
+        width: 100%;
+    }
+
+    .tarjeta img{
+        width: 40px;
+        height: 30px;
+    }
+
+    .expiracion-cvv {
+        flex-direction: column;
+    }
+
+    .expiracion-cvv-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
