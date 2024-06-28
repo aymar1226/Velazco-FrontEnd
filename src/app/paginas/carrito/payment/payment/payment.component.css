@@ -1,0 +1,10 @@
+#card-element {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#card-errors {
+  color: #dc3545;
+  margin-top: 10px;
+}

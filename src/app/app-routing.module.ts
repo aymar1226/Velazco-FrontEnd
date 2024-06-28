@@ -17,6 +17,7 @@ import { EditarUsuarioComponent } from './paginas/admin/crud-usuarios/editar-usu
 import { OrdenComponent } from './paginas/orden/orden.component';
 import { PagoComponent } from './paginas/pago/pago.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
+import { PaymentComponent } from './paginas/carrito/payment/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -105,6 +106,12 @@ const routes: Routes = [
     component: EditarUsuarioComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path:'payment',
+    component: PaymentComponent,
+    canActivate: [AuthGuard]
+  }
+
 
 ];
 

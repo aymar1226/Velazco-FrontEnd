@@ -127,5 +127,12 @@ export interface PersonaUsuarioDTO{
     estadoUsuario:String;
 }
 
+export interface PaymentDTO{
+    paymentIntentId:string;
+    clientSecret:string;
+}
+
+
+
 
 

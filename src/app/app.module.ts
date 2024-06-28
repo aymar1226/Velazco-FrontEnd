@@ -53,6 +53,7 @@ import { CrearUsuarioEmpleadoComponent } from './paginas/admin/crud-empleados/cr
 import { SolesPipe } from './pipes/soles.pipe';
 import { OrdenComponent } from './paginas/orden/orden.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
+import { PaymentComponent } from './paginas/carrito/payment/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { PerfilComponent } from './paginas/perfil/perfil.component';
     CrearUsuarioEmpleadoComponent,
     OrdenComponent,
     SolesPipe,
-    PerfilComponent
+    PerfilComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

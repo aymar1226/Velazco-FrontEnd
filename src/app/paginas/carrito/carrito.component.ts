@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { InicioComponent } from '../inicio/inicio.component';
+import { response } from 'express';
 
 @Component({
   selector: 'app-carrito',
@@ -95,6 +96,14 @@ export class CarritoComponent implements OnInit{
 
   irOrden():void{
     this.router.navigate(['/inicio/orden'])
+  }
+
+  updateCarrito(){
+    this.carritoService.updateCarrito().subscribe(response=>{
+      this.router.navigate(['/payment'])
+    },error=>{
+      Swal.fire("No se pudo actualizar el carrito")
+    })
   }
 
 
