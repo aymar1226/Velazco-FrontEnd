@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
-import { CarritoItem } from '../../model';
+import { CarritoItem, PaymentDTO } from '../../model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
+import { PaymentService } from '../../services/payment.service';
 
 @Component({
   selector: 'app-orden',
@@ -11,6 +12,7 @@ import { ProductoService } from '../../services/producto.service';
   styleUrls: ['./orden.component.css']
 })
 export class OrdenComponent implements OnInit {
+  paymentDTO:PaymentDTO;
 
   imagenesUrl: { [key: number]: string } = {};
   carritoItems?: CarritoItem[] = [];
@@ -19,7 +21,12 @@ export class OrdenComponent implements OnInit {
   correo: string = '';
   dni: string = '';
 
-  constructor(private carritoService: CarritoService, private router: Router, private productoService: ProductoService) {}
+  constructor(private carritoService: CarritoService, private router: Router, private productoService: ProductoService,private paymentService: PaymentService) {
+    this.paymentDTO={
+      clientSecret:'',
+      paymentIntentId:'',
+    }
+  }
 
   ngOnInit(): void {
     this.listarItems();
@@ -55,9 +62,6 @@ export class OrdenComponent implements OnInit {
     this.router.navigate(['/inicio/carrito']);
   }
 
-  irPago(): void{
-    this.router.navigate(['inicio/pago']);
-  }
 
   obtenerDatosUsuario() {
     // Suponiendo que los datos del usuario están almacenados en el localStorage
@@ -65,4 +69,16 @@ export class OrdenComponent implements OnInit {
     this.correo = localStorage.getItem('email') || 'Correo no disponible';
     this.dni = localStorage.getItem('dni') || 'DNI no disponible';
   }
+
+  createPaymentIntent() {
+    this.paymentService.paymentIntent().subscribe({
+      next: (response) => {
+        this.paymentService.setPaymentDTO(response);
+        console.log('Payment Intent created, client secret:', this.paymentDTO.clientSecret);
+        this.router.navigate(['inicio/pago']);
+      },
+      error: (error) => console.error('Error creating payment intent:', error)
+    });
+  }
+
 }

@@ -95,17 +95,11 @@ export class CarritoComponent implements OnInit{
   }
 
   irOrden():void{
-    this.router.navigate(['/inicio/orden'])
-  }
-
-  updateCarrito(){
     this.carritoService.updateCarrito().subscribe(response=>{
-      this.router.navigate(['/payment'])
+      this.router.navigate(['/inicio/orden'])
     },error=>{
       Swal.fire("No se pudo actualizar el carrito")
     })
   }
-
-
 
 }

@@ -1,7 +1,32 @@
-<div id="card-element">
-    <!-- Stripe Card Element will be inserted here -->
+<div class="tarjeta">
+  <h3>TARJETA</h3>
+  <label>Tarjetas Aceptadas :</label>
+  <div class="tarjetas-aceptadas">
+    <img src="assets/layout/paypal.png" alt="PayPal">
+    <img src="assets/layout/mastercard.png" alt="MasterCard">
+    <img src="assets/layout/amex.png" alt="American Express">
+    <img src="assets/layout/visa.png" alt="Visa">
+  </div>
+
+  <label for="titular">Titular De La Tarjeta:</label>
+  <input type="text" id="titular" [(ngModel)]="cardholderName" placeholder="mr. john doe">
+
+  <label for="card-number">Numero De Tarjeta:</label>
+  <div id="card-number"></div>
+
+  <div class="expiracion-cvv">
+    <div class="expiracion-cvv-item">
+      <label for="card-expiry">Fecha De Exp.:</label>
+      <div id="card-expiry"></div>
+    </div>
+    <div class="expiracion-cvv-item">
+      <label for="card-cvc">CVV:</label>
+      <div id="card-cvc"></div>
+    </div>
+  </div>
+
+  <div *ngIf="cardErrors" class="alert alert-danger">{{ cardErrors }}</div>
 </div>
-  <div id="card-errors" role="alert" *ngIf="cardErrors">{{ cardErrors }}</div>
   
   <button (click)="createPaymentIntent()">Create Payment Intent</button>
   <button (click)="confirmPayment()" [disabled]="!paymentDTO.clientSecret">Confirm Payment</button>

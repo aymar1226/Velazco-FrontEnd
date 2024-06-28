@@ -27,33 +27,16 @@ export class PaymentComponent implements OnInit {
 
   stripe: any;
   cardElement: any;
+  cardNumber: any;
+  cardExpiry: any;
+  cardCvc: any;
   cardErrors: any;
+  cardholderName: string = '';
+
 
 
   ngOnInit() {
-    loadStripe('pk_test_51PQjD6P99HVja6pDj8gJFz6hKnKAnidjeJCererNmqRplgHv4bxWfk6ilgVvlTG7Yd3UObmzfS8BAfkhiQOxaULv00kPORsdMg')
-      .then((stripe: any) => {
-        if (stripe) {
-          console.log('Stripe Iniciado exitosamente');
-          this.stripe = stripe;
-          const elements = this.stripe.elements();
-          this.cardElement = elements.create('card');
-          this.cardElement.mount('#card-element');
-  
-          this.cardElement.on('change', (event: any) => {
-            if (event.error) {
-              this.cardErrors = event.error.message;
-            } else {
-              this.cardErrors = undefined;
-            }
-          });
-        } else {
-          console.error('Fallo en Stripe al cargar ');
-        }
-      })
-      .catch((error: any) => {
-        console.error('Error cargando Stripe:', error);
-      });
+    this.cargarStripe();
   }
 
   createPaymentIntent() {
@@ -75,7 +58,10 @@ export class PaymentComponent implements OnInit {
       try {
         const result = await this.stripe.confirmCardPayment(this.paymentDTO.clientSecret, {
           payment_method: {
-            card: this.cardElement,
+            card: this.cardNumber,
+            billing_details: {
+              name: this.cardholderName
+            }
           }
         });
   
@@ -114,6 +100,57 @@ export class PaymentComponent implements OnInit {
     } else {
       console.error('No payment intent ID available');
     }
+  }
+
+  cargarStripe(){
+    loadStripe('pk_test_51PQjD6P99HVja6pDj8gJFz6hKnKAnidjeJCererNmqRplgHv4bxWfk6ilgVvlTG7Yd3UObmzfS8BAfkhiQOxaULv00kPORsdMg')
+      .then((stripe: any) => {
+        if (stripe) {
+          console.log('Stripe Iniciado exitosamente');
+          this.stripe = stripe;
+          const elements = this.stripe.elements();
+          
+          const style = {
+            base: {
+              fontSize: '16px',
+              color: '#32325d',
+              fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+              '::placeholder': {
+                color: '#aab7c4'
+              }
+            },
+            invalid: {
+              color: '#fa755a',
+              iconColor: '#fa755a'
+            }
+          };
+
+          this.cardNumber = elements.create('cardNumber', {style: style});
+          this.cardExpiry = elements.create('cardExpiry', {style: style});
+          this.cardCvc = elements.create('cardCvc', {style: style});
+
+          this.cardNumber.mount('#card-number');
+          this.cardExpiry.mount('#card-expiry');
+          this.cardCvc.mount('#card-cvc');
+
+          const handleChange = (event: any) => {
+            if (event.error) {
+              this.cardErrors = event.error.message;
+            } else {
+              this.cardErrors = undefined;
+            }
+          };
+
+          this.cardNumber.on('change', handleChange);
+          this.cardExpiry.on('change', handleChange);
+          this.cardCvc.on('change', handleChange);
+        } else {
+          console.error('Fallo en Stripe al cargar ');
+        }
+      })
+      .catch((error: any) => {
+        console.error('Error cargando Stripe:', error);
+      });
   }
 }
 

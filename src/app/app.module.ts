@@ -54,6 +54,7 @@ import { SolesPipe } from './pipes/soles.pipe';
 import { OrdenComponent } from './paginas/orden/orden.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { PaymentComponent } from './paginas/carrito/payment/payment/payment.component';
+import { PagoComponent } from './paginas/pago/pago.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { PaymentComponent } from './paginas/carrito/payment/payment/payment.comp
     OrdenComponent,
     SolesPipe,
     PerfilComponent,
-    PaymentComponent
+    PaymentComponent,
+    PagoComponent
   ],
   imports: [
     BrowserModule,

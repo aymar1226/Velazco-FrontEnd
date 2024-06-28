@@ -7,10 +7,17 @@ import { PaymentDTO } from '../model';
   providedIn: 'root'
 })
 export class PaymentService {
+  paymentDTO:PaymentDTO;
+
 
   private apiUrl = 'http://localhost:8080/api/payment';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.paymentDTO={
+      clientSecret:'',
+      paymentIntentId:'',
+    }
+   }
 
   paymentIntent(): Observable<PaymentDTO> {
     const token = localStorage.getItem('token');
@@ -28,6 +35,14 @@ export class PaymentService {
 
   cancel(id: string): Observable<string> {
     return this.http.post<string>(`${this.apiUrl}/cancel/${id}`, null);
+  }
+
+  setPaymentDTO(dto: PaymentDTO) {
+    this.paymentDTO = dto;
+  }
+
+  getPaymentDTO() {
+    return this.paymentDTO;
   }
   
 }
