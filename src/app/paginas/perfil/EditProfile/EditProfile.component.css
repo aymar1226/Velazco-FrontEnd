@@ -1,0 +1,87 @@
+.body{
+    padding: 10px;
+    background-color: #FAEBD7;
+}
+
+.edit-profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    border: 2px solid brown;
+}
+
+.edit-profile-details {
+    width: 100%;
+}
+
+.edit-profile-details .dato {
+    margin: 10px 0;
+}
+
+.edit-profile-details label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+}
+
+.edit-profile-details input {
+    width: 100%;
+    padding: auto;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-size: 14px;
+}
+
+.edit-profile-details input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.edit-profile-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn-guardar {
+    width: 120px;
+    background-color: transparent;
+    color: #4CAF50;
+    padding: 8px;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-guardar:hover{
+    background-color: #45a049;
+    color: white;
+}
+
+.btn-cancelar {
+    width: 120px;
+    background-color: transparent;
+    color: #f44336;
+    padding: 8px;
+    border: 1px #f44336 solid;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-cancelar:hover{
+    background-color: #e53935;
+    color: white
+}

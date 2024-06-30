@@ -1,0 +1,33 @@
+<div class="body">
+  <div class="password-container">
+    <h2>Contraseña</h2>
+    <p>Puedes cambiar la contraseña de tu cuenta</p>
+
+    <div class="cambio">
+      <div class="change-password-box">
+        <h3>Cambio de contraseña</h3>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="current-password">Contraseña actual:</label>
+            <input type="password" id="current-password" name="current-password" [(ngModel)]="currentPassword">
+          </div>
+          <div class="form-group">
+            <label for="new-password">Nueva contraseña:</label>
+            <input type="password" id="new-password" name="new-password" [(ngModel)]="newPassword">
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirma la nueva contraseña:</label>
+            <input type="password" id="confirm-password" name="confirm-password" [(ngModel)]="confirmPassword">
+          </div>
+          <button type="submit" class="btn-save">Guardar</button>
+        </form>
+      </div>
+
+      <div class="footer-message">
+        <img src="assets/layout/login1.png" alt="Chef">
+        <p>Lo importante para Velazco es mantener<br>tu información segura.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

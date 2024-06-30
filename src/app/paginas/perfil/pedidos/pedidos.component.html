@@ -1,0 +1,42 @@
+<div class="body">
+  <div *ngIf="pedidos.length > 0; else noPedidos" class="container">
+    <div class="panel-izquierdo">
+      <div class="titulo">Mis pedidos</div>
+      <div class="pedidos-lista">
+        <div class="pedido" *ngFor="let pedido of pedidos" (click)="seleccionarPedido(pedido)">
+          <p class="nombre-pedido">Pedido {{pedido.id}}</p>
+          <button class="eliminar" (click)="eliminarPedido(pedido.id); $event.stopPropagation()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-derecho">
+      <ng-container *ngIf="pedidoSeleccionado; else noPedidoSeleccionado">
+        <h2>Lista de Pedidos {{pedidoSeleccionado.id}}</h2>
+        <div class="lista-productos">
+          <div class="producto" *ngFor="let producto of pedidoSeleccionado.productos">
+            <img [src]="producto.imagen" [alt]="producto.nombre">
+            <div class="detalles">
+              <h3>{{producto.nombre}}</h3>
+              <p>Cantidad: {{producto.cantidad}}</p>
+              <p>Precio: ${{producto.precio.toFixed(2)}}</p>
+              <p>Sub total: ${{(producto.cantidad * producto.precio).toFixed(2)}}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noPedidoSeleccionado>
+        <div class="mensaje-seleccion">
+          <i class="fas fa-info-circle"></i>
+          <p>Seleccione un pedido para ver los detalles</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #noPedidos>
+    <div class="mensaje-sin-pedidos">
+      <i class="fas fa-box-open"></i>
+      <p>No tienes ningún pedido anterior</p>
+    </div>
+  </ng-template>
+</div>

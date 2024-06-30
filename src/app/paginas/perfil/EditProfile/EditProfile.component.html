@@ -1,0 +1,36 @@
+<div class="body">
+  <h2>Editar Perfil</h2>
+  <div class="edit-profile-content">
+    <div class="edit-profile-details">
+      <div class="dato">
+        <label>Nombre</label>
+        <input matInput placeholder="Nombre" [(ngModel)]="nombre">
+      </div>
+      <div class="dato">
+        <label>Apellido Paterno</label>
+        <input matInput placeholder="Apellido Paterno" [(ngModel)]="apellidoPaterno">
+      </div>
+      <div class="dato">
+        <label>Apellido Materno</label>
+        <input matInput placeholder="Apellido Materno" [(ngModel)]="apellidoMaterno">
+      </div>
+      <div class="dato">
+        <label>Teléfono</label>
+        <input matInput placeholder="Teléfono" [(ngModel)]="telefono">
+      </div>
+      <div class="dato">
+        <label>DNI</label>
+        <input matInput placeholder="DNI" [(ngModel)]="dni">
+      </div>
+      <div class="dato">
+        <label>Correo</label>
+        <input matInput placeholder="Correo" [(ngModel)]="correo">
+      </div>
+    </div>
+    <div class="edit-profile-buttons">
+      <button class="btn-guardar" (click)="save()">Guardar</button>
+      <button class="btn-cancelar" (click)="close()">Cancelar</button>
+    </div>
+  </div>
+
+</div>

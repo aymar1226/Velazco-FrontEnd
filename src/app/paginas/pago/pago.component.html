@@ -14,13 +14,15 @@
       <div class="facturacion">
         <h3>DIRECCIÓN DE LA FACTURACIÓN</h3>
         <label for="email">Gmail:</label>
-        <input type="email" id="email" [(ngModel)]="billingDetails.email" name="email" placeholder="example@example.com">
+        <input type="email" id="email" [(ngModel)]="billingDetails.email" name="email"
+          placeholder="example@example.com">
 
         <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" [(ngModel)]="billingDetails.address.line1" name="address" placeholder="calle - localidad">
+        <input type="text" id="direccion" [(ngModel)]="billingDetails.address.line1" name="address"
+          placeholder="Calle - Localidad">
 
         <label for="ciudad">Ciudad:</label>
-        <input type="text" id="ciudad" [(ngModel)]="billingDetails.address.city" name="city" placeholder="ica">
+        <input type="text" id="ciudad" [(ngModel)]="billingDetails.address.city" name="city" placeholder="Ica">
       </div>
 
       <div class="tarjeta">
@@ -34,19 +36,20 @@
         </div>
 
         <label for="titular">Titular De La Tarjeta:</label>
-        <input type="text" id="titular" [(ngModel)]="billingDetails.name" name="cardholderName" placeholder="mr. john doe">
-      
+        <input type="text" id="titular" [(ngModel)]="billingDetails.name" name="cardholderName"
+          placeholder="Mr. John Doe">
+
         <label for="numero-tarjeta">Numero De Tarjeta:</label>
-        <div id="card-number"></div>
+        <div id="card-number" class="stripe-input"></div>
 
         <div class="expiracion-cvv">
           <div class="expiracion-cvv-item">
             <label for="mes-expiracion">Fecha De Exp.:</label>
-            <div id="card-expiry"></div>
+            <div id="card-expiry" class="stripe-input"></div>
           </div>
           <div class="expiracion-cvv-item">
             <label for="cvv">CVV:</label>
-            <div id="card-cvc"></div>
+            <div id="card-cvc" class="stripe-input"></div>
           </div>
         </div>
       </div>

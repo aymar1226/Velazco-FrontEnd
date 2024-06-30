@@ -77,7 +77,7 @@ export class InformacionComponent {
   }
 
   irPerfil(): void {
-    this.router.navigate(['/perfil'])
+    this.router.navigate(['inicio/perfil/profile'])
   }
 
 }

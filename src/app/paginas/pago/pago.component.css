@@ -59,7 +59,7 @@
 
 .facturacion h3,
 .tarjeta h3 {
-    font-size: 20px;
+    font-size: 23px;
     margin-bottom: 15px;
     color: #333;
 }
@@ -67,6 +67,7 @@
 label {
     display: block;
     margin-bottom: 5px;
+    font-size: 17px;
     color: #000
 }
 
@@ -78,11 +79,39 @@ input {
     border-top: none;
     border-right: none;
     border-left: none;
+    font-size: 17px;
+}
+
+input::placeholder {
+    color: #aab7c4; /* Este es el color que usa Stripe */
 }
 
 input:focus {
     outline: none;
     box-shadow: none;
+}
+
+.stripe-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.stripe-input .__PrivateStripeElement {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.stripe-input input {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border: none;
+    outline: none;
 }
 
 .expiracion-cvv {
@@ -91,7 +120,7 @@ input:focus {
 }
 
 .expiracion-cvv-item {
-    width: 32%;
+    width: 48%;
 }
 
 .tarjetas-aceptadas img {
@@ -127,11 +156,13 @@ input:focus {
 
     .pago-form {
         flex-direction: column;
+        gap: 20px;
     }
 
     .facturacion,
     .tarjeta {
         width: 100%;
+
     }
 }
 

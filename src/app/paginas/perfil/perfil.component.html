@@ -1,3 +1,15 @@
-<div class="body">
-  <h1>hola soy perfil</h1>
+<div class="container">
+  <nav class="nav">
+    <button [class.active]="isRouteActive('inicio/perfil/profile')" (click)="irProfile()">
+      <a [class.active]="isRouteActive('inicio/perfil/profile')">Perfil</a>
+    </button>
+    <button [class.active]="isRouteActive('inicio/perfil/pedidos')" (click)="irPedidos()">
+      <a [class.active]="isRouteActive('inicio/perfil/pedidos')">Mis pedidos</a>
+    </button>
+    <button [class.active]="isRouteActive('inicio/perfil/modificacion')" (click)="irContrasena()">
+      <a [class.active]="isRouteActive('inicio/perfil/modificacion')">Ajustes contraseña</a>
+    </button>
+  </nav>
+
+  <router-outlet></router-outlet>
 </div>

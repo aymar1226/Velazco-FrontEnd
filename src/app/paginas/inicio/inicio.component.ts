@@ -36,7 +36,7 @@ export class InicioComponent implements OnInit {
   }
 
   checkVisibility(url: string): void {
-    const hiddenRoutes = ['carrito', 'orden', 'pago'];
+    const hiddenRoutes = ['carrito', 'orden', 'pago', 'perfil'];
     this.mostrarCarritoSearch = !hiddenRoutes.some(route => url.includes(route));
   }
 
@@ -67,7 +67,7 @@ export class InicioComponent implements OnInit {
   }
 
   togglePerfil(): void {
-    this.router.navigate(['/perfil']);
+    this.router.navigate(['inicio/perfil/profile']);
   }
 
 

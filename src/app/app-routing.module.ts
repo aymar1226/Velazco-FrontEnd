@@ -18,6 +18,13 @@ import { OrdenComponent } from './paginas/orden/orden.component';
 import { PagoComponent } from './paginas/pago/pago.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { PaymentComponent } from './paginas/carrito/payment/payment/payment.component';
+import { ProfileComponent } from './paginas/perfil/profile/profile.component';
+import { PedidosComponent } from './paginas/perfil/pedidos/pedidos.component';
+import { AjustesContraComponent } from './paginas/perfil/ajustes-contra/ajustes-contra.component';
+import { CrudUsuariosComponent } from './paginas/admin/crud-usuarios/crud-usuarios.component';
+import { CrudEmpleadosComponent } from './paginas/admin/crud-empleados/crud-empleados.component';
+import { CrudClientesComponent } from './paginas/admin/crud-clientes/crud-clientes.component';
+import { CrudProveedoresComponent } from './paginas/admin/crud-proveedores/crud-proveedores.component';
 
 const routes: Routes = [
   {
@@ -43,7 +50,16 @@ const routes: Routes = [
       { path: 'productos', component: ProductoComponent },
       { path: 'carrito', component: CarritoComponent },
       { path: 'orden', component: OrdenComponent },
-      { path: 'pago', component: PagoComponent }
+      { path: 'pago', component: PagoComponent },
+      {
+        path: 'perfil', component: PerfilComponent,
+        children: [
+          { path: '', component: ProfileComponent },
+          { path: 'profile', component: ProfileComponent },
+          { path: 'pedidos', component: PedidosComponent },
+          { path: 'modificacion', component: AjustesContraComponent }
+        ]
+      }
     ]
   },
 
@@ -76,15 +92,20 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: CrudUsuariosComponent },
+      { path: 'usuarios', component: CrudUsuariosComponent },
+      { path: 'empleados', component: CrudEmpleadosComponent },
+      { path: 'clientes', component: CrudClientesComponent },
+      { path: 'productos', component: CrudProductosComponent },
+      { path: 'proveedores', component: CrudProveedoresComponent },
+    ]
   },
   {
     path: 'admin/productos',
     component: CrudProductosComponent,
     canActivate: [AuthGuard]
-  },
-  { path: 'perfil', 
-    component: PerfilComponent,
   },
   {
     path: 'crear/producto',

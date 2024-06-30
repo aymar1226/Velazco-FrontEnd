@@ -55,6 +55,10 @@ import { OrdenComponent } from './paginas/orden/orden.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { PaymentComponent } from './paginas/carrito/payment/payment/payment.component';
 import { PagoComponent } from './paginas/pago/pago.component';
+import { ProfileComponent } from './paginas/perfil/profile/profile.component';
+import { PedidosComponent } from './paginas/perfil/pedidos/pedidos.component';
+import { AjustesContraComponent } from './paginas/perfil/ajustes-contra/ajustes-contra.component';
+import { EditProfileComponent } from './paginas/perfil/EditProfile/EditProfile.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +91,11 @@ import { PagoComponent } from './paginas/pago/pago.component';
     SolesPipe,
     PerfilComponent,
     PaymentComponent,
-    PagoComponent
+    PagoComponent,
+    ProfileComponent,
+    PedidosComponent,
+    AjustesContraComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
