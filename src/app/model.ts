@@ -101,7 +101,24 @@ export interface Proveedor{
     estado:String;
 }
 
+export interface Orden{
+    id : number;
+    fecha_venta: Date;
+    total : number;
+    codigo : string;
+    estado : string;
+    usuario : Usuario;
+}
 
+export interface DetalleOrden{
+    id : number;
+    cantidad : number;
+    precioxunidad : number;
+    total : number;
+    estado : string;
+    orden : Orden;
+    producto : Producto;
+}
 
 
 export interface RegistroDTO{
@@ -131,6 +148,17 @@ export interface PaymentDTO{
     paymentIntentId:string;
     clientSecret:string;
 }
+
+export interface InfoDTO{
+    documento :string;
+    nombre :string;
+    ap_paterno :string;
+    ap_materno :string;
+    telefono :string;
+    direccion :string;
+    correo :string;
+}
+
 
 
 

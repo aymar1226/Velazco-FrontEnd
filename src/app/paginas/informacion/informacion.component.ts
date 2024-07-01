@@ -19,6 +19,9 @@ export class InformacionComponent {
   mostrarBotonInicioSesion: boolean = true;
   menuAbierto: boolean = false;
 
+  isAdmin: boolean = false;
+
+
 
   constructor(
     private router: Router,
@@ -35,6 +38,8 @@ export class InformacionComponent {
         this.mostrarBotonInicioSesion = params['mostrarBotonInicioSesion'] === 'true';
 
     });
+
+    this.checkAdminRole();
   }
 
 
@@ -78,6 +83,11 @@ export class InformacionComponent {
 
   irPerfil(): void {
     this.router.navigate(['inicio/perfil/profile'])
+  }
+
+  checkAdminRole() {
+    const role = localStorage.getItem('rol');
+    this.isAdmin = role === 'admin';
   }
 
 }

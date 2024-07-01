@@ -60,7 +60,8 @@ const routes: Routes = [
           { path: 'modificacion', component: AjustesContraComponent }
         ]
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
 
   {
@@ -72,7 +73,7 @@ const routes: Routes = [
   {
     path: 'informacion',
     component: InformacionComponent,
-
+    canActivate: [AuthGuard]
   },
   {
     path: 'prueba',
@@ -88,6 +89,7 @@ const routes: Routes = [
   {
     path: 'menu',
     component: ProductoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',

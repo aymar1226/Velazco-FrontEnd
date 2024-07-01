@@ -1,29 +1,30 @@
 <div class="body">
-  <div *ngIf="pedidos.length > 0; else noPedidos" class="container">
+  <div *ngIf="ordenes.length > 0; else noPedidos" class="container">
     <div class="panel-izquierdo">
       <div class="titulo">Mis pedidos</div>
       <div class="pedidos-lista">
-        <div class="pedido" *ngFor="let pedido of pedidos" (click)="seleccionarPedido(pedido)">
-          <p class="nombre-pedido">Pedido {{pedido.id}}</p>
-          <button class="eliminar" (click)="eliminarPedido(pedido.id); $event.stopPropagation()">Eliminar</button>
+        <div class="pedido" *ngFor="let orden of ordenes;let i = index" (click)="seleccionarPedido(orden)">
+          <p class="nombre-pedido">Pedido {{i+1}}</p>
+          <button class="eliminar" (click)="eliminarPedido(orden.id); $event.stopPropagation()">Eliminar</button>
         </div>
       </div>
     </div>
 
     <div class="panel-derecho">
       <ng-container *ngIf="pedidoSeleccionado; else noPedidoSeleccionado">
-        <h2>Lista de Pedidos {{pedidoSeleccionado.id}}</h2>
+        <h2>Lista de Productos</h2>
         <div class="lista-productos">
-          <div class="producto" *ngFor="let producto of pedidoSeleccionado.productos">
-            <img [src]="producto.imagen" [alt]="producto.nombre">
+          <div class="producto" *ngFor="let detalle of detallesOrdenSeleccionada">
+            <img [src]="imagenesUrl[detalle.producto.id]" [alt]="detalle.producto.nombre">
             <div class="detalles">
-              <h3>{{producto.nombre}}</h3>
-              <p>Cantidad: {{producto.cantidad}}</p>
-              <p>Precio: ${{producto.precio.toFixed(2)}}</p>
-              <p>Sub total: ${{(producto.cantidad * producto.precio).toFixed(2)}}</p>
+              <h3>{{detalle.producto.nombre}}</h3>
+              <p>Cantidad: {{detalle.cantidad}}</p>
+              <p>Precio: S/{{detalle.producto.precio.toFixed(2)}}</p>
+              <p>Sub total: S/{{(detalle.total).toFixed(2)}}</p>
             </div>
           </div>
         </div>
+        <div> Total: S/{{pedidoSeleccionado.total}}</div>
       </ng-container>
       <ng-template #noPedidoSeleccionado>
         <div class="mensaje-seleccion">

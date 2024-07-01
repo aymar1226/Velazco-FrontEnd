@@ -6,31 +6,31 @@
     <div class="profile-header">
       <h2>Mi perfil</h2>
     </div>
-    <div class="profile-content">
+    <div class="profile-content" *ngIf="info">
       <div class="profile-details">
         <div class="dato">
           <label>Nombre</label>
-          <p>Jorge Armando</p>
+          <p>{{info.nombre}}</p>
         </div>
         <div class="dato">
           <label>Apellido Paterno</label>
-          <p>Bonifaz</p>
+          <p>{{info.ap_paterno}}</p>
         </div>
         <div class="dato">
           <label>Apellido Materno</label>
-          <p>Campos</p>
+          <p>{{info.ap_materno}}</p>
         </div>
         <div class="dato">
           <label>Telefono</label>
-          <p>934931850</p>
+          <p>{{info.telefono}}</p>
         </div>
         <div class="dato">
           <label>DNI</label>
-          <p>918894260</p>
+          <p>{{info.documento}}</p>
         </div>
         <div class="dato">
           <label>Correo</label>
-          <p>JorgemasNagmail.com</p>
+          <p>{{info.correo}}</p>
         </div>
       </div>
       <div class="profile-message">

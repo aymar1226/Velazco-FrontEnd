@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import baserUrl from './helper';
-import { Carrito, Cliente, Credentials, Empleado, PersonaUsuarioDTO, Privilegio, Proveedor, RegistroDTO, Usuario } from '../model';
+import { Carrito, Cliente, Credentials, Empleado, InfoDTO, PersonaUsuarioDTO, Privilegio, Proveedor, RegistroDTO, Usuario } from '../model';
 import { Observable, map } from 'rxjs';
 import jwt_decode, { jwtDecode } from 'jwt-decode';
 
@@ -74,7 +74,7 @@ export class UsuarioService {
   }
 
   getPrivilegioByCorreo(correo: String): Observable<Privilegio> {
-    const url = `http://localhost:8080/api/usuarios/email/${correo}`;
+    const url = `http://localhost:8080/api/usuarios/privilegio/${correo}`;
     return this.http.get<Privilegio>(url);
   }
 
@@ -93,7 +93,19 @@ export class UsuarioService {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       localStorage.setItem('email', decodedToken.email);
+      localStorage.setItem('rol', decodedToken.roles)
       return decodedToken.email;
+    }else{
+      localStorage.removeItem('email')
+    }
+    return null
+  }
+
+  getRolFromToken(token:any): string | null {
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      localStorage.setItem('rol', decodedToken.roles)
+      return decodedToken.roles;
     }else{
       localStorage.removeItem('email')
     }
@@ -109,6 +121,10 @@ export class UsuarioService {
     return localStorage.getItem('email');
   }
 
+  getRol(){
+    return localStorage.getItem('rol');
+  }
+
   removeToken(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
@@ -120,5 +136,25 @@ export class UsuarioService {
 
   isLoggedIn(): boolean {
     return localStorage.getItem('loggedIn') === 'true';
+  }
+
+  getInfo(): Observable<InfoDTO>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<InfoDTO>(`http://localhost:8080/api/clientes/info`, { headers });
+  }
+
+  changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const body = {
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    };
+
+    return this.http.put<boolean>(`http://localhost:8080/api/usuarios/cambio-contrasena`, body, { headers });
   }
 }

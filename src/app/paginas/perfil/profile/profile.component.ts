@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProfileComponent } from '../EditProfile/EditProfile.component';
+import { InfoDTO } from '../../../model';
+import { UsuarioService } from '../../../services/usuario.service';
+import Swal from 'sweetalert2';
+import { error } from 'console';
 
 @Component({
   selector: 'app-profile',
@@ -8,40 +12,54 @@ import { EditProfileComponent } from '../EditProfile/EditProfile.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  nombre: string = 'Jorge Armando';
-  apellidoPaterno: string = 'Bonifaz';
-  apellidoMaterno: string = 'Campos';
-  telefono: string = '934931850';
-  dni: string = '918894260';
-  correo: string = 'JorgemasNagmail.com';
+  info : InfoDTO ;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private usuarioService:UsuarioService) {
+    this.info={
+      ap_materno:'',
+      ap_paterno:'',
+      correo:'',
+      direccion:'',
+      documento:'',
+      nombre:'',
+      telefono:''
+    }
+   }
 
   ngOnInit() {
+    this.cargarInfo();
   }
 
   abrirEditPerfil(): void {
-    const dialogRef = this.dialog.open(EditProfileComponent, {
-      width: '400px',
-      data: {
-        nombre: this.nombre,
-        apellidoPaterno: this.apellidoPaterno,
-        apellidoMaterno: this.apellidoMaterno,
-        telefono: this.telefono,
-        dni: this.dni,
-        correo: this.correo
-      }
-    });
+      const dialogRef = this.dialog.open(EditProfileComponent, {
+        width: '400px',
+        data: {
+          nombre: this.info.nombre,
+          apellidoPaterno: this.info.ap_paterno,
+          apellidoMaterno: this.info.ap_materno,
+          telefono: this.info.telefono,
+          dni: this.info.documento,
+          correo: this.info.correo
+        }
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.nombre = result.nombre;
-        this.apellidoPaterno = result.apellidoPaterno;
-        this.apellidoMaterno = result.apellidoMaterno;
-        this.telefono = result.telefono;
-        this.dni = result.dni;
-        this.correo = result.correo;
-      }
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.info.nombre = result.nombre;
+          this.info.ap_paterno = result.apellidoPaterno;
+          this.info.ap_materno = result.apellidoMaterno;
+          this.info.telefono = result.telefono;
+          this.info.documento = result.dni;
+          this.info.correo = result.correo;
+        }
+      });
+  }
+
+  cargarInfo(){
+    this.usuarioService.getInfo().subscribe((response)=>{
+      this.info=response;
+    },error=>{
+      Swal.fire("No se pudieron encontrar datos disponibles")
     });
   }
 }

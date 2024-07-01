@@ -28,7 +28,7 @@ export class ProductoComponent {
   menuAbierto: boolean = false;
   administrarAbierto: boolean = false;
   perfilAbierto: boolean = false;
-  quantity: number = 1;
+  quantity: number[] = [];
 
   variable: any;
 
@@ -68,14 +68,14 @@ export class ProductoComponent {
   }
   /*----------------------------------------ANIMACIONES---------------------------------------*/
 
-  decrement() {
-    if (this.quantity > 1) {
-      this.quantity--;
+  decrement(index: number) {
+    if (this.quantity[index] > 1) {
+      this.quantity[index]--;
     }
   }
 
-  increment() {
-    this.quantity++;
+  increment(index: number) {
+    this.quantity[index]++;
   }
 
 
@@ -86,7 +86,8 @@ export class ProductoComponent {
       .subscribe(productos => {
         this.productos = productos;
 
-        productos.forEach(producto => {
+        productos.forEach((producto,index) => {
+          this.quantity[index] = 1;
           this.productoService.obtenerImagenProducto(producto.id).subscribe((imagen: Blob) => {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -125,13 +126,13 @@ export class ProductoComponent {
     return this.categoriaSeleccionada === id;
   }
 
-  obtenerProducto(id: number) {
+  obtenerProducto(id: number, index:number) {
     if (id) {
       this.productoService.getProductobyId(id).subscribe(productoObtenido => {
         this.producto = productoObtenido;
         console.log(productoObtenido);
 
-        this.agregarItem();
+        this.agregarItem(index);
       }, error => {
         Swal.fire('No se pudo guardar el producto, tienes que iniciar sesion para comprar productos')
         console.log('error al obtener el producto')
@@ -140,14 +141,14 @@ export class ProductoComponent {
   }
 
 
-  agregarItem() {
+  agregarItem(index: number) {
 
     if (localStorage.getItem('email')) {
       console.log(this.producto);
 
       if (this.producto) {
         this.productoDTO.id = this.producto.id;
-        this.productoDTO.cantidad = this.quantity;
+        this.productoDTO.cantidad = this.quantity[index];
       }
 
 

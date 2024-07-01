@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
-import { CarritoItem, PaymentDTO } from '../../model';
+import { CarritoItem, InfoDTO, PaymentDTO } from '../../model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { PaymentService } from '../../services/payment.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-orden',
@@ -17,20 +18,30 @@ export class OrdenComponent implements OnInit {
   imagenesUrl: { [key: number]: string } = {};
   carritoItems?: CarritoItem[] = [];
   total: number = 0;
+  info:InfoDTO;
   nombre: string = '';
-  correo: string = '';
+  correo: string|null = '';
   dni: string = '';
 
-  constructor(private carritoService: CarritoService, private router: Router, private productoService: ProductoService,private paymentService: PaymentService) {
+  constructor(private usuarioService:UsuarioService, private carritoService: CarritoService, private router: Router, private productoService: ProductoService,private paymentService: PaymentService) {
     this.paymentDTO={
       clientSecret:'',
       paymentIntentId:'',
     }
+    this.info={
+      ap_materno:'',
+      ap_paterno:'',
+      correo:'',
+      direccion:'',
+      documento:'',
+      nombre:'',
+      telefono:''
+    }
   }
 
   ngOnInit(): void {
+    this.cargarInfo();
     this.listarItems();
-    this.obtenerDatosUsuario();
   }
 
   listarItems() {
@@ -62,14 +73,6 @@ export class OrdenComponent implements OnInit {
     this.router.navigate(['/inicio/carrito']);
   }
 
-
-  obtenerDatosUsuario() {
-    // Suponiendo que los datos del usuario están almacenados en el localStorage
-    this.nombre = localStorage.getItem('nombre') || 'Nombre no disponible';
-    this.correo = localStorage.getItem('email') || 'Correo no disponible';
-    this.dni = localStorage.getItem('dni') || 'DNI no disponible';
-  }
-
   createPaymentIntent() {
     this.paymentService.paymentIntent().subscribe({
       next: (response) => {
@@ -78,6 +81,14 @@ export class OrdenComponent implements OnInit {
         this.router.navigate(['inicio/pago']);
       },
       error: (error) => console.error('Error creating payment intent:', error)
+    });
+  }
+
+  cargarInfo(){
+    this.usuarioService.getInfo().subscribe((response)=>{
+      this.info=response;
+    },error=>{
+      Swal.fire("No se pudieron encontrar datos disponibles")
     });
   }
 

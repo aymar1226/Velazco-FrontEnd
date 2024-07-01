@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, shareReplay } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-admin',
@@ -25,6 +27,9 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('rol')!='admin'){
+      this.router.navigate([''])
+    }
   }
 
 
@@ -40,6 +45,10 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/inicio/perfil/profile'])
   }
 
+  cerrarSesion(): void {
+    Swal.fire("Sesion cerrada exitosamente")
+    this.router.navigate(['/login'])
+  }
 
 
 

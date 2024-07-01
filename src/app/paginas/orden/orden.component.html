@@ -12,9 +12,9 @@
 
       <!-- Datos de la orden -->
       <div class="orden-datos">
-          <p><strong>Nombre:</strong> {{nombre}}</p>
-          <p><strong>Correo:</strong> {{correo}}</p>
-          <p><strong>DNI:</strong> {{dni}}</p>
+          <p><strong>Nombre:</strong> {{info.nombre}} {{info.ap_paterno}} {{info.ap_materno}}</p>
+          <p><strong>Correo:</strong> {{info.correo}}</p>
+          <p><strong>DNI:</strong> {{info.documento}}</p>
       </div>
 
       <!-- Mostrar mensaje de carrito vacío si no hay items en el carrito -->

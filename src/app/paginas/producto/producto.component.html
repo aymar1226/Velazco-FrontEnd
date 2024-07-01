@@ -14,18 +14,18 @@
     <main>
         <h2 style="text-align: center;">Productos de {{ nombreCategoriaSeleccionada }}</h2>
         <section class="product-listing">
-            <div class="product" id="product1" *ngFor="let producto of productos">
+            <div class="product" id="product1" *ngFor="let producto of productos; let i = index">
                 <img *ngIf="imagenesUrl[producto.id]" [src]="imagenesUrl[producto.id]" alt="Product 1"
                     class="product-image">
                 <h2 class="product-name">{{producto.nombre}} </h2>
                 <p class="product-description">{{producto.descripcion}}</p>
                 <p class="product-price">{{producto.precio | soles}}</p>
                 <div class="quantity-selector">
-                    <button class="quantity-btn" (click)="decrement()">-</button>
-                    <input type="text" id="quantity" [value]="quantity" readonly>
-                    <button class="quantity-btn" (click)="increment()">+</button>
+                    <button class="quantity-btn" (click)="decrement(i)">-</button>
+                    <input type="text" id="quantity" [value]="quantity[i]" readonly>
+                    <button class="quantity-btn" (click)="increment(i)">+</button>
                 </div>
-                <button class="custom-btn comprar" (click)="obtenerProducto(producto.id)"> Comprar</button>
+                <button class="custom-btn comprar" (click)="obtenerProducto(producto.id,i)">Añadir al carrito</button>
             </div>
         </section>
     </main>

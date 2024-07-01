@@ -48,25 +48,7 @@ export class PagoComponent implements OnInit {
   }
 
   procesarPago(): void {
-    this.confirmPayment().then(()=>{
-      Swal.fire({
-        title: 'Pago procesado',
-        text: 'Tu pago ha sido un éxito, tu boleta te llegará a tu correo.',
-        icon: 'success',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-      }).then(()=>{
-        this.router.navigate(['/inicio/productos']);
-      })
-    }).catch(error => { // Handle payment confirmation errors
-      console.error('Error confirming payment:', error);
-      // Show an error message to the user
-      Swal.fire({
-        title: 'Error en el pago',
-        text: 'Hubo un problema al confirmar tu pago. Por favor, inténtalo de nuevo.',
-        icon: 'error'
-      });
-    });
+    this.confirmPayment();
   }
 
   cargarStripe(){
@@ -146,11 +128,25 @@ export class PagoComponent implements OnInit {
   
         if (result.error) {
           console.error('Error confirming payment:', result.error);
+          Swal.fire({
+            title: 'Error en el pago',
+            text: 'Hubo un problema al confirmar tu pago. Por favor, inténtalo de nuevo.',
+            icon: 'error'
+          });
         } else {
           if (result.paymentIntent.status === 'succeeded') {
             console.log('Payment confirmed:', result.paymentIntent);
+            Swal.fire({
+              title: 'Pago procesado',
+              text: 'Tu pago ha sido un éxito, tu boleta te llegará a tu correo.',
+              icon: 'success',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK'
+            }).then(()=>{
+              this.router.navigate(['/inicio/productos']);
+            })
+
             await this.paymentService.confirm(this.paymentDTO.paymentIntentId).subscribe(respones=>{
-              
             });
           }
         }
@@ -161,9 +157,19 @@ export class PagoComponent implements OnInit {
       console.error('No client secret available or Stripe not initialized');
       if (!this.paymentDTO.clientSecret) {
         console.error('Client secret is missing. Make sure createPaymentIntent() was called successfully.');
+        Swal.fire({
+          title: 'Error en el pago',
+          text: 'No se pudo encontrar una orden de pago generada anteriormente',
+          icon: 'error'
+        });
       }
       if (!this.stripe) {
         console.error('Stripe is not initialized. Check if loadStripe() in ngOnInit() completed successfully.');
+        Swal.fire({
+          title: 'Error en el pago',
+          text: 'No se pudo cargar la pasarela de pago',
+          icon: 'error'
+        });
       }
     }
   }
