@@ -8,6 +8,7 @@ import { Credentials, RegistroDTO, Usuario } from '../../model';
 import { NgForm } from '@angular/forms';
 import { response } from 'express';
 import { error } from 'console';
+import { right } from '@popperjs/core';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +22,11 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  loginError = false;
 
   registro: RegistroDTO;
-  confirmarPaswword: String = '';
-  mensajeError: String = '';
+  confirmarPaswword: string = '';
+  mensajeError: string = '';
   usuario?: Usuario;
 
   @ViewChild('signInBtn') signInBtn!: ElementRef;
@@ -80,16 +82,14 @@ export class LoginComponent implements OnInit {
     }*/
 
 
-  checkLoginFields(form: NgForm) {
-    form.form.markAllAsTouched(); // Marcar todos los campos como tocados
+  checkLoginFields(loginForm: NgForm) {
+    loginForm.form.markAllAsTouched(); // Marcar todos los campos como tocados
 
-    if (form.invalid) {
-      // Si el formulario es inválido, no hacer nada más
+    if (loginForm.invalid) {
       return;
     }
 
-    // Si el formulario es válido, proceder con el login
-    this.login(form);
+    this.login(loginForm);
   }
 
   login(form: NgForm) {
@@ -107,53 +107,123 @@ export class LoginComponent implements OnInit {
       error => {
         console.error("Error al iniciar sesión:", error);
         Swal.fire('Credenciales incorrectas');
+
+        this.loginError = true;
+        this.creds.email = '';
+        this.creds.password = '';
+        form.resetForm(); // Limpiar formulario
       }
     );
   }
 
-  registrarUsuario(form: NgForm) {
+  capitalizeWords(str: String): string {
+    return str.replace(/\b\w/g, (char: string) => char.toUpperCase());
+  }
+
+  registrarUsuario(registerForm: NgForm) {
     this.mensajeError = "";
 
-    if (!form.valid) {
+    if (registerForm.valid) {
+      if (this.registro.documento.toString().length !== 8) {
+        this.snack.open('El DNI debe tener exactamente 8 dígitos', 'Aceptar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+        });
+        return;
+      }
 
+      const telefonoStr = this.registro.telefono.toString();
+      if (telefonoStr.length !== 9 || telefonoStr.charAt(0) !== '9') {
+        this.snack.open('El teléfono debe tener exactamente 9 dígitos y comenzar con el número 9', 'Aceptar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+        });
+        return;
+      }
+
+      // Capitalizar las primeras letras de cada palabra
+      this.registro.nombre = this.capitalizeWords(this.registro.nombre);
+      this.registro.ap_paterno = this.capitalizeWords(this.registro.ap_paterno);
+      this.registro.ap_materno = this.capitalizeWords(this.registro.ap_materno);
+
+
+      
       this.usuarioService.getUsuarioByCorreo(this.registro.correo).subscribe(usuarioObtenido => {
         console.log(usuarioObtenido);
 
         this.mensajeError = "El correo ya existe";
+        this.snack.open('El correo ya existe', 'Aceptar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+        });
 
       }, error => {
-        this.mensajeError = "";
+        this.usuarioService.getUsuarioByDocumento(this.registro.documento).subscribe(usuarioObtenido => {
+          console.log(usuarioObtenido);
 
-        this.mensajeError = "";
-        if (this.confirmarPaswword == this.registro.password) {
+          this.mensajeError = "El DNI ya existe";
+          this.snack.open('El DNI ya existe', 'Aceptar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+          });
 
+        }, error => {
           this.mensajeError = "";
-          console.log(this.registro);
 
-          if (this.registro) {
+          if (this.confirmarPaswword === this.registro.password) {
+            console.log(this.registro);
+
             this.usuarioService.registrarUsuario(this.registro).subscribe(response => {
-
-              Swal.fire('Usuario registrado con exito, puedes iniciar sesion')
-              console.log(this.registro.correo)
-
+              Swal.fire('Usuario registrado con éxito, puedes iniciar sesión');
               this.usuarioService.crearCarrito(this.registro.correo).subscribe(response => {
-                console.log("Nuevo carrito creado")
+                console.log("Nuevo carrito creado");
               });
 
             }, error => {
-              Swal.fire('No se pudo registrar el usuario')
-            })
+              Swal.fire('No se pudo registrar el usuario');
+            });
+
+          } else {
+            this.mensajeError = "Las contraseñas no coinciden";
+            this.snack.open('Las contraseñas no coinciden', 'Aceptar', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'right',
+            });
           }
-        } else {
-          this.mensajeError = "Las contraseñas no coinciden";
-        }
-      })
+        });
+      });
 
     } else {
-      Swal.fire("Datos incorrectos")
+      Swal.fire("Hubo un error, intentelo más tarde.");
     }
-
   }
+
+  validarDNI() {
+    if (this.registro.documento.toString().length !== 8) {
+      this.snack.open('El DNI debe tener exactamente 8 dígitos', 'Aceptar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+      });
+    }
+  }
+
+  validarTelefono() {
+    const telefonoStr = this.registro.telefono.toString();
+    if (telefonoStr.length !== 9 || telefonoStr.charAt(0) !== '9') {
+      this.snack.open('El teléfono debe tener exactamente 9 dígitos y comenzar con el número 9', 'Aceptar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+      });
+    }
+  }
+  
 
 
 

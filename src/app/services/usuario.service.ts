@@ -20,7 +20,7 @@ export class UsuarioService {
 
   login(creds: Credentials){
     console.log(creds);
-    return this.http.post('http://localhost:8083/login', creds,{
+    return this.http.post('http://localhost:8080/login', creds,{
       observe: 'response'
     }).pipe(map((response: HttpResponse<any>) => {
       const body = response.body;
@@ -67,6 +67,10 @@ export class UsuarioService {
   }
 
  
+  getUsuarioByDocumento(documento: String): Observable<Usuario> {
+    const url = `http://localhost:8080/api/usuarios/documento/${documento}`;
+    return this.http.get<Usuario>(url);
+  }
 
   getUsuarioByCorreo(correo: String): Observable<Usuario> {
     const url = `http://localhost:8080/api/usuarios/email/${correo}`;
