@@ -13,6 +13,7 @@ export class InicioComponent implements OnInit {
   mostrarBotonInicioSesion: boolean = true;
   mostrarCarritoSearch: boolean = true;
   mostrarCarrito = false;
+  isAdmin : boolean = false;
   menuAbierto: boolean = false;
 
 
@@ -33,6 +34,7 @@ export class InicioComponent implements OnInit {
 
     });
 
+    this.checkAdminRole();
   }
 
   checkVisibility(url: string): void {
@@ -74,5 +76,10 @@ export class InicioComponent implements OnInit {
 
   toggleCarrito(): void {
     this.router.navigate(['inicio/carrito'])
+  }
+
+  checkAdminRole() {
+    const role = localStorage.getItem('rol');
+    this.isAdmin = role === 'admin';
   }
 }

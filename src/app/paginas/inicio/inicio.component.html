@@ -45,7 +45,7 @@
                             <h2>Nombre</h2>
                         </div>
                         <hr>
-                        <a class="sub-menu-link" (click)="toggleAdministrar()">
+                        <a *ngIf="isAdmin" class="sub-menu-link" (click)="toggleAdministrar()">
                             <i class="fas fa-cogs"></i>
                             <p>Administrar</p>
                             <span>></span>

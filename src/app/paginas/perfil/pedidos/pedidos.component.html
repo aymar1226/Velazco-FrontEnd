@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <div> Total: S/{{pedidoSeleccionado.total}}</div>
+        <div> Total: {{pedidoSeleccionado.total | soles}}</div>
       </ng-container>
       <ng-template #noPedidoSeleccionado>
         <div class="mensaje-seleccion">
